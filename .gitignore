@@ -4,3 +4,5 @@ portfoliovenv/
 DevFolio.zip
 static/img/
 templates/Old
+params.yaml
+templates/sample.html

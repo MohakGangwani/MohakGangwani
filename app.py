@@ -1,4 +1,3 @@
-
 import yaml
 from flask import Flask, render_template, request
 
@@ -9,6 +8,7 @@ with open('params.yaml', 'r') as file:
 app = Flask(__name__)
 
 @app.route('/')
+@app.route('/index')
 def home():
     return render_template('index.html', title="Home", content=content)
 
@@ -19,6 +19,10 @@ def resume():
 @app.route('/projects')
 def projects():
     return render_template('projects.html', title="Projects", content=content)
+
+@app.route('/services')
+def services():
+    return render_template('services.html', title="Services", content=content)
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():

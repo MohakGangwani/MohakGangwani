@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section id="about" class="about section">
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="section-title">
+            <h2>About Me</h2>
+        </div><!-- End Section Title -->
+        <div class="row gy-4">
+            <div class="col-md-6">
+
+                <div class="row justify-content-between gy-4">
+                    <div class="col-lg-5">
+                        <img src="static/img/profile-img.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-lg-7 about-info">
+                        <p><strong>Name: </strong> {{ content['resume']['About']['name'] }}</p>
+                        <p><strong>Profile: </strong> {{ content['resume']['About']['profile'] }}</p>
+                        <p><strong>Email: </strong> {{ content['resume']['About']['email'] }}</p>
+                        <p><strong>Phone: </strong> {{ content['resume']['About']['phone'] }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="about-me">
+                    <p>{{ content['index']['introduction'] }}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section><!-- /About Section -->
+
+
+<section id="resume" class="resume section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Resume</h2>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <h3>Summary</h3>
+
+                <div class="resume-item">
+                    <h4>{{ content['resume']['Summary']['name'] }}</h4>
+                    <p><em>{{ content['resume']['Summary']['details'] }}</em></p>
+                    <ul>
+                        <li>{{ content['resume']['Summary']['address'] }}</li>
+                        <li>{{ content['resume']['Summary']['phone'] }}</li>
+                        <li>{{ content['resume']['Summary']['email'] }}</li>
+                    </ul>
+                </div><!-- End Resume Item -->
+
+                <h3>Education</h3>
+                {% for edu in content['resume']['Education'] %}
+                <div class="resume-item">
+                    <h4>{{ edu['degree'] }}</h4>
+                    <h5>{{ edu['time_period'] }}</h5>
+                    <p><em>{{ edu['institution'] }}</em></p>
+                    <ul>
+                        {% for detail in edu['details'] %}
+                        <li>{{ detail }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}<!-- End Resume Item -->
+
+                <h3>Skills</h3>
+                {% for skill_category in content['resume']['Skills'] %}
+                <div class="resume-item">
+                    <h4>{{ skill_category['category'] }}: </h4>
+                    <p>{{ ', '.join(skill_category['list']) }}</p>
+                </div>
+                {% endfor %}<!-- End Resume Item -->
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                <h3>Work Experience</h3>
+                {% for job in content['resume']['Work Experience'] %}
+                <div class="resume-item">
+                    <h4>{{ job['position'] }}</h4>
+                    <h5>{{ job['time_period'] }}</h5>
+                    <p><em>{{ job['company'] }}</em></p>
+                    <ul>
+                        {% for detail in job['details'] %}
+                        <li>{{ detail }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}<!-- Edn Resume Item -->
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section><!-- /Resume Section -->
+{% endblock %}

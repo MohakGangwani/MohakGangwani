@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<section id="services" class="services section">
+    <div class="container">
+        <h2>Services</h2>
+        <div class="row">
+            {% for service in content['services'] %}
+            <div class="col-md-4">
+                <h3>{{ service['title'] }}</h3>
+                <p>{{ service['description'] }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
