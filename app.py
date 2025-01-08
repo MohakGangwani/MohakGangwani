@@ -1,8 +1,6 @@
 import yaml
-from flask import Flask, render_template, request, flash
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+from flask import Flask, render_template, request, flash, redirect, url_for
+from flask_mail import Mail, Message
 
 # Load content from params.yaml
 with open('params.yaml', 'r') as file:
@@ -11,11 +9,15 @@ with open('params.yaml', 'r') as file:
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Replace with your secure key
 
-# Email Configuration
-SMTP_SERVER = 'smtp.gmail.com'  # Replace with your SMTP server
-SMTP_PORT = 587
-EMAIL_ADDRESS = 'your_email@gmail.com'  # Replace with your email
-EMAIL_PASSWORD = 'your_email_password'
+# Configure Flask-Mail
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = content['email']['id']  # Replace with your email
+app.config['MAIL_PASSWORD'] = content['email']['password']  # Replace with your email password
+app.config['MAIL_DEFAULT_SENDER'] = content['email']['id']  # Replace with your email
+
+mail = Mail(app)
 
 
 @app.route('/')
@@ -65,6 +67,7 @@ def services():
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
+    print("Got in Contact")
     navbar = {
         'index': 'inactive',
         'resume': 'inactive',
@@ -80,36 +83,25 @@ def contact():
         message = request.form['message']
 
         try:
-            # Prepare the email
-            msg = MIMEMultipart()
-            msg['From'] = EMAIL_ADDRESS
-            msg['To'] = EMAIL_ADDRESS  # Send the email to yourself
-            msg['Subject'] = f"New Contact Form Submission: {subject}"
+            # Send email
+            msg = Message(subject=f"Contact Form: {subject}",
+                          sender=email,
+                          recipients=[content['email']['id']])
+            msg.body = f"""New message from {name} ({email}):\n\n{message}"""
+            mail.send(msg)
 
-            # Email body
-            body = f"""
-            You have a new message from your portfolio contact form:\n
-            Name: {name}\n
-            Email: {email}\n
-            Subject: {subject}\n
-            Message:\n{message}
-            """
-            msg.attach(MIMEText(body, 'plain'))
+            # Add a success flash message
+            print(f"Email sent successfully to {email}")
+            flash('Message was sent successfully', 'success')
+            return redirect(url_for('contact'))
 
-            # Connect to the SMTP server and send the email
-            with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
-                server.starttls()
-                server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-                server.send_message(msg)
-
-            flash("Your message has been sent successfully!", "success")
         except Exception as e:
+            # Add an error flash message
             print(f"Error: {e}")
-            flash("There was an error sending your message. Please try again later.", "danger")
+            flash('Failed to send the message. Please try again.', 'danger')
+            return redirect(url_for('contact'))
 
-        return render_template('contact.html', title="Contact", success=True, content=content, navbar=navbar)
-
-    return render_template('contact.html', title="Contact", success=False, content=content, navbar=navbar)
+    return render_template('contact.html', title="Contact", content=content, navbar=navbar)
 
 
 if __name__ == '__main__':
