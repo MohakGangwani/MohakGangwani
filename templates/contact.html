@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <!-- Contact Section -->
-<section id="contact" class="contact section">
+<section id="contact" class="contact section bg-light py-5">
 
     <!-- Section Title -->
     <div class="container section-title" data-aos="fade-up">
@@ -12,13 +12,12 @@
 
         <div class="info-wrap" data-aos="fade-up" data-aos-delay="200">
             <div class="row gy-5">
-
                 <div class="col-lg-4">
                     <a href="{{ content['contact']['phone-link'] }}">
                         <div class="info-item d-flex align-items-center">
                             <i class="bi bi-telephone flex-shrink-0"></i>
                             <div>
-                                <h3>Call Us</h3>
+                                <h3>Call Me</h3>
                                 <p>{{ content['contact']['phone'] }}</p>
                             </div>
                         </div>
@@ -52,14 +51,12 @@
         </div>
     </div>
 
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
-
         <!-- Flash Messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-        <div class="alert-container">
+        <div class="alert-container mb-4">
             {% for category, message in messages %}
-            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            <div class="alert alert-{{ category }} alert-dismissible fade show text-center" role="alert">
                 {{ message }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
@@ -68,39 +65,38 @@
         {% endif %}
         {% endwith %}
 
-        <form action="/contact" method="POST" class="php-email-form" data-aos="fade-up" data-aos-delay="300">
-            <div class="row gy-4">
-                <div class="col-md-6">
-                    <input type="text" name="name" class="form-control" placeholder="Your Name" required>
-                </div>
-
-                <div class="col-md-6">
-                    <input type="email" class="form-control" name="email" placeholder="Your Email" required>
-                </div>
-
-                <div class="col-md-12">
-                    <input type="text" class="form-control" name="subject" placeholder="Subject" required>
-                </div>
-
-                <div class="col-md-12">
-                    <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
-                </div>
-
-                <!-- Loading, Success, and Error Messages -->
-                <div class="col-md-12 text-center">
-                    <div class="loading">Loading...</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">Your message has been sent. Thank
-                        you!</div>
-                </div>
-
-                <div class="col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+        <!-- Contact Form -->
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="contact-form-container p-4 rounded shadow bg-white">
+                    <form action="/contact" method="POST" class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label for="name" class="form-label fw-semibold">Your Name</label>
+                            <input type="text" class="form-control rounded-3" id="name" name="name" placeholder="Full Name" required>
+                            <div class="invalid-feedback">Please enter your name.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-semibold">Your Email</label>
+                            <input type="email" class="form-control rounded-3" id="email" name="email" placeholder="username@email.com" required>
+                            <div class="invalid-feedback">Please enter a valid email address.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label fw-semibold">Subject</label>
+                            <input type="text" class="form-control rounded-3" id="subject" name="subject" placeholder="Subject" required>
+                            <div class="invalid-feedback">Please enter a subject.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label fw-semibold">Your Message</label>
+                            <textarea class="form-control rounded-3" id="message" name="message" rows="6" placeholder="Write your message here..." required></textarea>
+                            <div class="invalid-feedback">Please enter your message.</div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary px-4 py-2">Send Message</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </form>
-
+        </div>
     </div>
-
-</section><!-- /Contact Section -->
+</section>
 {% endblock %}

@@ -7,15 +7,15 @@ with open('params.yaml', 'r') as file:
     content = yaml.safe_load(file)
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Replace with your secure key
+app.secret_key = 'your_secret_key'
 
 # Configure Flask-Mail
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = content['email']['id']  # Replace with your email
-app.config['MAIL_PASSWORD'] = content['email']['password']  # Replace with your email password
-app.config['MAIL_DEFAULT_SENDER'] = content['email']['id']  # Replace with your email
+app.config['MAIL_USERNAME'] = content['email']['id']
+app.config['MAIL_PASSWORD'] = content['email']['password']
+app.config['MAIL_DEFAULT_SENDER'] = content['email']['id']
 
 mail = Mail(app)
 
@@ -67,7 +67,6 @@ def services():
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    print("Got in Contact")
     navbar = {
         'index': 'inactive',
         'resume': 'inactive',
@@ -85,23 +84,23 @@ def contact():
         try:
             # Send email
             msg = Message(subject=f"Contact Form: {subject}",
-                          sender=email,
-                          recipients=[content['email']['id']])
+                          sender=app.config['MAIL_DEFAULT_SENDER'],
+                          recipients=[app.config['MAIL_DEFAULT_SENDER']])
             msg.body = f"""New message from {name} ({email}):\n\n{message}"""
             mail.send(msg)
 
             # Add a success flash message
-            print(f"Email sent successfully to {email}")
-            flash('Message was sent successfully', 'success')
-            return redirect(url_for('contact'))
+            flash('Message Sent Successfully!', 'success')
 
         except Exception as e:
             # Add an error flash message
-            print(f"Error: {e}")
-            flash('Failed to send the message. Please try again.', 'danger')
-            return redirect(url_for('contact'))
+            flash(f'Failed to send the message. Error: {str(e)}', 'danger')
+
+        # Redirect to the contact page (GET request)
+        return redirect(url_for('contact'))
 
     return render_template('contact.html', title="Contact", content=content, navbar=navbar)
+
 
 
 if __name__ == '__main__':
