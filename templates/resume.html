@@ -12,7 +12,7 @@
 
                 <div class="row justify-content-between gy-4">
                     <div class="col-lg-5">
-                        <img src="{{ content['resume']['About']['img']}}" class="img-fluid" alt="">
+                        <img src="{{ url_for('static', filename=content['resume']['About']['img']) }}" class="img-fluid" alt="">
                     </div>
                     <div class="col-lg-7 about-info">
                         <p><strong>Name: </strong> {{ content['resume']['About']['name'] }}</p>
@@ -124,7 +124,7 @@
                     <div class="card-body text-center">
                         <!-- Image Section -->
                         <div class="d-flex justify-content-center mb-3">
-                            <img src="{{ testimonial['image'] }}" class="rounded-circle img-fluid" alt="{{ testimonial['name'] }}" style="object-fit: cover; width: 150px; height: 150px;">
+                            <img src="{{ url_for('static', filename=testimonial['image']) }}" class="rounded-circle img-fluid" alt="{{ testimonial['name'] }}" style="object-fit: cover; width: 150px; height: 150px;">
                         </div>
                         <!-- Text Section -->
                         <h5 class="card-title"><b>{{ testimonial['name'] }}</b></h5>
