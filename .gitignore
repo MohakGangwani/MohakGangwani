@@ -4,3 +4,7 @@ DevFolio.zip
 params.yaml
 SECRET*KEY/
 Mohak*Gangwani*Website.pem
+artifacts/data/preprocessed_data.parquet
+artifacts/data/TMDB_all_movies.csv
+artifacts/models/similarity_model.pkl
+artifacts/models/vector.pkl

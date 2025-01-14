@@ -1,3 +1,9 @@
 Flask
 pyyaml
 Flask-Mail
+pandas
+pandarallel
+spacy
+scikit-learn
+nltk
+fastparquet

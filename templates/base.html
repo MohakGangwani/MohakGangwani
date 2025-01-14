@@ -44,11 +44,11 @@
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="index" class="{{ navbar['index'] }}">Home<br></a></li>
-                    <li><a href="resume" class="{{ navbar['resume'] }}">Resume</a></li>
+                    <li><a href="{{ url_for('home') }}" class="{{ navbar['index'] }}">Home<br></a></li>
+                    <li><a href="{{ url_for('resume') }}" class="{{ navbar['resume'] }}">Resume</a></li>
                     <!-- <li><a href="services" class="{{ navbar['services'] }}">Services</a></li> -->
-                    <li><a href="projects" class="{{ navbar['projects'] }}">Projects</a></li>
-                    <li><a href="contact" class="{{ navbar['contact'] }}">Contact</a></li>
+                    <li><a href="{{ url_for('projects') }}" class="{{ navbar['projects'] }}">Projects</a></li>
+                    <li><a href="{{ url_for('contact') }}" class="{{ navbar['contact'] }}">Contact</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
