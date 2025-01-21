@@ -7,7 +7,7 @@
             {% for project in content['projects'] %}
             <div class="col">
                 <!-- Project Card -->
-                <a href="{{ project['link'] }}">
+                <a href="{{ project['link'] }}" target="_blank">
                     <div class="card h-100">
                         <div class="ratio ratio-16x9">
                             <img src="{{ url_for('static', filename=project['image']) }}" class="card-img-top img-fluid"
