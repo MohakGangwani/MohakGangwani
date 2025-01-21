@@ -1,0 +1,143 @@
+index:
+  bg-img: "img/index-bg.JPG"
+  name: "Mohak Gangwani"
+  designations: "Data Scientist, Machine Learning Engineer, Analytics Consultant, Analytics Engineer"
+  introduction: "Welcome! I am Mohak Gangwani, a Data Science professional with a strong foundation in mathematics and a passion for solving complex problems through data. With expertise in machine learning, NLP, forecasting, and data visualization, I specialize in developing innovative solutions that drive impactful insights. Having recently completed my M.S. in Data Science, I am excited to apply my skills and knowledge to create meaningful outcomes. Explore my portfolio to learn more about my journey, skills, and projects."
+
+resume:
+  About:
+    img: "img/about-me.jpg"
+    name: "Mohak Gangwani"
+    profile: "Data Scientist"
+    email: "mohakmg99@gmail.com"
+    phone: "(+91) 9999517520"
+    linkedin-link: "https://www.linkedin.com/in/mohak-gangwani/"
+    github-link: "https://github.com/MohakGangwani/"
+  Summary:
+    details: "Mohak Gangwani is a dedicated Data Scientist with a strong foundation in mathematics and a passion for solving complex problems through data. With over two years of professional experience and a recently completed M.S. in Data Science from the University of Nottingham, he has successfully contributed to impactful projects across various industries. In his previous roles, Mohak has demonstrated expertise in managing data science projects, developing predictive models, and delivering actionable insights to drive business decisions. His academic and professional journey reflects his commitment to leveraging data-driven strategies for meaningful outcomes. Mohak is eager to apply his skills and experience to innovative challenges, contributing to projects that create lasting value."
+    address: Delhi, India
+    phone: "(+91) 9999517520"
+    email: "mohakmg99@gmail.com"
+  Education:
+    - degree: "M.S. Data Science"
+      institution: "University of Nottingham"
+      time_period: "Sep 2023 – Sep 2024"
+      details:
+        - "Relevant Modules: Machine Learning, Applied Statistics, Big Data, etc."
+    - degree: "B.Sc. Mathematics (Hons)"
+      institution: University of Delhi
+      time_period: "Jul 2017 – Aug 2020"
+      details:
+        - "GPA: 3.33/4.00 | Modules: Linear Algebra, Calculus, Statistics"
+  Work Experience:
+    - position: "Associate Project Lead - Data Science"
+      company: "Escalent"
+      time_period: "Jan 2023 – Aug 2023"
+      details:
+        - "Independently managed multiple projects while also providing guidance and mentorship to junior team members."
+        - "Designed Natural Language Processing (NLP) frameworks using Python allowing the user to create multiple use cases like Sentiment Analysis & Topic Modelling along with features like Model Evaluation and Hyperparameter Tuning."
+        - "Designed and launched a forecasting application using Python (Django), incorporating Sensitivity and What-if Analysis to analyze 200+ cost variables for an educational organization."
+        - "Developed and deployed customer segmentation models and A/B testing to optimize marketing strategies, improving targeting with data-driven insights."
+        - "Created an Analytical Tool using Python & Excel to project a brand's market share, allowing the client to analyse how different parameters affect the projected value, with an accuracy of 85%+."
+    - position: "Analyst - Data Science"
+      company: "Escalent"
+      time_period: "Jan 2022 – Dec 2022"
+      details:
+        - "Developed a 12-month rolling time-series model using R to forecast the Share of Market (SOM) of a brand."
+        - "Deployed scalable, automated machine learning pipelines utilizing modern MLOps practices, resulting in a 30% reduction in model training time."
+        - "Derived a forecast model using Python to project the SOM of a product category in different states maintaining a minimum accuracy of 75% while dealing with noisy data."
+        - "Built and deployed customer segmentation and churn analysis models using Python, combining lifecycle modelling with Marketing Mix Modelling to enhance customer engagement."
+        - "Conducted knowledge transfer sessions to facilitate the smooth onboarding of new team members."
+    - position: "Management Trainee - Data Science"
+      company: "Escalent"
+      time_period: "Jan 2022 – Dec 2022"
+      details:
+        - "Formalized an automated tool using Python (Selenium, BeautifulSoup) to extract data, improving accuracy and efficiency by more than 300%."
+        - "Automated the forecast model-building process using Python, improving efficiency and productivity by more than 100%."
+        - "Designed PowerBI dashboards to visualize actionable KPIs, improving client management and resource allocation."
+        - "Proposed and implemented a tool to track the impact of taxes on the company’s sales and revenue, helping the company plan ahead of time."
+        - "Formalized an automated tool to generate reports of daily/monthly/quarterly sales of 5+ product categories using Python (Pandas, Numpy)."
+  Internships:
+    - position: "Analyst and Strategy Development"
+      company: "RG Enterprises"
+      time_period: "Jan 2021 - Apr 2021"
+      details:
+        - "As part of my work in algorithmic trading, I conducted extensive back-testing on four different trading models using Python. Through rigorous testing and analysis, I was able to achieve a Calmar Ratio of 6+, which is a widely recognized measure of a trading system's performance. In addition to this, I also designed and implemented two brand new trading models from scratch, leveraging my expertise in Python and financial markets. Once complete, I deployed these models on a server, ensuring reliable and efficient execution of trades."
+    - position: "Data Analyst Intern"
+      company: " Indian Institute of Management, Lucknow"
+      time_period: "Nov 2020 - Dec 2020"
+      details:
+        - "As part of my work in the analytics project for an eye care store, I utilized my expertise in statistics to identify key business insights that allowed me to derive accurate inventory numbers for lenses. By applying statistical methods to analyze demand patterns and trends, I was able to make data-driven decisions that significantly improved the clinic's demand fulfillment rate. Specifically, I was able to increase the rate from 45% to over 80%, leading to increased patient satisfaction and improved operational efficiency."
+    
+  Skills:
+    - category: "Programming Languages"
+      list: 
+        - "Python"
+        - "R"
+        - "OOPS (Object Oriented Programming)"
+        - "Data Science Libraries"
+    - category: "Data Science Techniques"
+      list: 
+        - "Machine Learning"
+        - "Deep Learning"
+        - "Natural Language Processing (NLP)"
+        - "Time Series FOrecasting"
+        - "Customer Segmentation"
+        - "Market Mix Modelling"
+        - "A/B Testing"
+        - "Optimization"
+        - "Big Data Techniques"
+    - category: "Databases"
+      list: 
+        - "SQL"
+        - "NoSQL"
+    - category: "Deployment & CLoud Tools"
+      list: 
+        - "Git"
+        - "GitHub"
+        - "DagsHub"
+        - "MLFlow"
+        - "Data Version Control (DVC)"
+        - "Docker"
+        - "AWS"
+    - category: "Data Visualization & Dashboarding"
+      list: 
+        - "PowerBI"
+        - "Tableau"
+        - "Advanced Excel"
+    - category: "Other Tools & Softwares"
+      list: 
+      - "Linux & Command Line Commands"
+  Testimonials:
+    - name: "Sameer Saurabh"
+      image: "img/testimonials/Sameer Saurabh.jpg"
+      designation: "Director - Data Science"
+      company: "Escalent"
+      details: "I had a great experience working with Mohak. We worked together for around 1 year where he developed a very complex web-based application for one of our clients. His background in Mathematics came very handy to the entire team. He did a lot of heavy lifting in the analytical thinking. I think he is very devoted towards his work and always tries to give his maximum in any deliverable. I have no hesitation in recommending him for his programming, analytical and mathematical abilities. I look forward to working with him again and also wish him the best of luck!"
+    - name: "Lokesh Vaishnav"
+      image: "img/testimonials/Lokesh Vaishnav.jpeg"
+      designation: "Analyst - Data Science"
+      company: "Escalent"
+      details: "Mohak and I worked together in a same team for a project which was basically related to Data Science + App development. He is a great mathematician and coder. His debugging skills are awesome. His knowledge of python programming is commendable. He thinks in a lean way and brings out the best possible solution. He also knows web development and have done awesome job in that department too. Overall I really liked working with him as he is a great team player as well I got to learn so many things from him. Just wanted to say him that keep rocking and all the very best for your future endeavours."
+
+projects:
+  - title: "Movie Recommender System"
+    description: "The Movie Recommendation System is a Python and Flask-based project that uses Content-Based Filtering to recommend movies based on metadata like genres, cast, and descriptions. It leverages machine learning techniques (TF-IDF and KNN) for similarity calculations and features an interactive web interface for real-time recommendations. The project highlights skills in data preprocessing, NLP, and web deployment."
+    link: "https://github.com/MohakGangwani/Movie-Recommender-System"
+    image: "img/movie recommendation system.jpg"
+  - title: "Image Captioning Project"
+    description: "The Image Captioning Project combines InceptionV3 for image feature extraction and an LSTM-based decoder to generate descriptive captions for images. It preprocesses images and text, uses InceptionV3 to extract features, and trains the LSTM to predict captions from these features. The project demonstrates expertise in deep learning, and sequence modeling, showcasing skills in TensorFlow/Keras and working with image and text data."
+    link: "https://github.com/MohakGangwani/Image-Captioning"
+    image: "img/image captioning project.png"
+
+contact:
+  phone: "(+91) 9999517520"
+  phone-link: "tel:+919999517520"
+  email: "mohakmg99@gmail.com"
+  email-link: "mailto:mohakmg99@gmail.com"
+  linkedin: "mohak-gangwani"
+  linkedin-link: "https://www.linkedin.com/in/mohak-gangwani/"
+
+email:
+  id: "mohakgangwani.website@gmail.com"
+  password: "kmxzintbegeadgou"
