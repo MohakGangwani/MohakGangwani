@@ -1,8 +1,6 @@
 import yaml
 from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_mail import Mail, Message
-import datetime
-import geoip2.database
 
 # Load content from params.yaml
 with open('params.yaml', 'r') as file:
@@ -22,44 +20,9 @@ app.config['MAIL_DEFAULT_SENDER'] = content['email']['id']
 mail = Mail(app)
 
 
-
-
-# Path to the GeoIP2 database (you need to download this)
-GEOIP_DATABASE_PATH = 'GeoLite2-City.mmdb'
-
-def log_user_access():
-    # Get user IP address
-    user_ip = request.remote_addr
-    # Get user agent (browser/device info)
-    user_agent = request.headers.get('User-Agent')
-    # Get current timestamp
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-    # Get location information using GeoIP2
-    try:
-        with geoip2.database.Reader(GEOIP_DATABASE_PATH) as reader:
-            response = reader.city(user_ip)
-            city = response.city.name
-            country = response.country.name
-            # Log the details (you can save this to a file or database)
-            log_entry = f"Time: {timestamp}, IP: {user_ip}, Location: {city}, {country}, User Agent: {user_agent}\n"
-    except Exception as e:
-        exception = e
-        city = "Unknown"
-        country = "Unknown"
-        # Log the details (you can save this to a file or database)
-        log_entry = f"Time: {timestamp}, IP: {user_ip}, Location: {city}, {country}, User Agent: {user_agent}\nError: {e}\n"
-    print(log_entry)
-    with open("access_log.txt", "a") as log_file:
-        log_file.write(log_entry)
-
-
-
-
 @app.route('/')
 @app.route('/index')
 def home():
-    log_user_access()
     navbar = {
         'index': 'active',
         'resume': 'inactive',
