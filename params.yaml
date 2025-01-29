@@ -128,7 +128,7 @@ projects:
     image: "img/image captioning project.png"
   - title: "Marketing Analytics Dashboard"
     description: "The Marketing Analytics Dashboard offers an intuitive interface for visualising key marketing metrics, such as customer sentiment, product conversion rates, and social media engagement trends. Key features include real-time data updates, interactive filtering options, and drill-down capabilities for in-depth analysis. It also provides clear visualizations of performance across multiple channels, enabling businesses to identify trends and make data-driven decisions to optimise marketing efforts."
-    link: "https://github.com/MohakGangwani/Image-Captioning"
+    link: "https://github.com/MohakGangwani/Marketing-Analytics-Dashboard"
     image: "img/marketing analytics dashboard.png"
 contact:
   phone: "(+91) 9999517520"
