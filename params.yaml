@@ -21,53 +21,50 @@ resume:
   Education:
     - degree: "M.S. Data Science"
       institution: "University of Nottingham"
-      time_period: "Sep 2023 – Sep 2024"
+      time_period: "Sep 2023 – Dec 2024"
       details:
         - "Relevant Modules: Machine Learning, Applied Statistics, Big Data, etc."
     - degree: "B.Sc. Mathematics (Hons)"
       institution: University of Delhi
       time_period: "Jul 2017 – Aug 2020"
       details:
-        - "GPA: 3.33/4.00 | Modules: Linear Algebra, Calculus, Statistics"
+        - "Modules: Linear Algebra, Calculus, Statistics"
   Work Experience:
-    - position: "Associate Project Lead - Data Science"
+    - position: "Senior Data Analyst"
       company: "Escalent"
-      time_period: "Jan 2023 – Aug 2023"
+      time_period: "May 2021 – Aug 2023"
       details:
-        - "Independently managed multiple projects while also providing guidance and mentorship to junior team members."
-        - "Designed Natural Language Processing (NLP) frameworks using Python allowing the user to create multiple use cases like Sentiment Analysis & Topic Modelling along with features like Model Evaluation and Hyperparameter Tuning."
-        - "Designed and launched a forecasting application using Python (Django), incorporating Sensitivity and What-if Analysis to analyze 200+ cost variables for an educational organization."
-        - "Developed and deployed customer segmentation models and A/B testing to optimize marketing strategies, improving targeting with data-driven insights."
-        - "Created an Analytical Tool using Python & Excel to project a brand's market share, allowing the client to analyse how different parameters affect the projected value, with an accuracy of 85%+."
-    - position: "Analyst - Data Science"
-      company: "Escalent"
-      time_period: "Jan 2022 – Dec 2022"
-      details:
-        - "Developed a 12-month rolling time-series model using R to forecast the Share of Market (SOM) of a brand."
-        - "Deployed scalable, automated machine learning pipelines utilizing modern MLOps practices, resulting in a 30% reduction in model training time."
-        - "Derived a forecast model using Python to project the SOM of a product category in different states maintaining a minimum accuracy of 75% while dealing with noisy data."
-        - "Built and deployed customer segmentation and churn analysis models using Python, combining lifecycle modelling with Marketing Mix Modelling to enhance customer engagement."
-        - "Conducted knowledge transfer sessions to facilitate the smooth onboarding of new team members."
-    - position: "Management Trainee - Data Science"
-      company: "Escalent"
-      time_period: "Jan 2022 – Dec 2022"
-      details:
-        - "Formalized an automated tool using Python (Selenium, BeautifulSoup) to extract data, improving accuracy and efficiency by more than 300%."
-        - "Automated the forecast model-building process using Python, improving efficiency and productivity by more than 100%."
-        - "Designed PowerBI dashboards to visualize actionable KPIs, improving client management and resource allocation."
-        - "Proposed and implemented a tool to track the impact of taxes on the company’s sales and revenue, helping the company plan ahead of time."
-        - "Formalized an automated tool to generate reports of daily/monthly/quarterly sales of 5+ product categories using Python (Pandas, Numpy)."
-  Internships:
-    - position: "Analyst and Strategy Development"
+        - "Directed data projects, mentoring junior team members to ensure timely delivery and effective knowledge transfer."
+        - "Designed and deployed a Python-based Forecasting tool with Sensitivity and What-if Analysis, optimising decisions across 200+ cost variables for an educational organisation."
+        - "Delivered Customer Segmentation and Churn Prediction models using Python, integrating Market Mix Modelling to optimise marketing efforts and boost engagement."
+        - "Engineered an automated Python tool for data extraction, increasing accuracy and efficiency by 300%, eliminating manual workflows."
+
+    - position: "Analyst & Strategy Developer"
       company: "RG Enterprises"
-      time_period: "Jan 2021 - Apr 2021"
+      time_period: "Jan 2021 – Apr 2021"
       details:
-        - "As part of my work in algorithmic trading, I conducted extensive back-testing on four different trading models using Python. Through rigorous testing and analysis, I was able to achieve a Calmar Ratio of 6+, which is a widely recognized measure of a trading system's performance. In addition to this, I also designed and implemented two brand new trading models from scratch, leveraging my expertise in Python and financial markets. Once complete, I deployed these models on a server, ensuring reliable and efficient execution of trades."
-    - position: "Data Analyst Intern"
-      company: " Indian Institute of Management, Lucknow"
-      time_period: "Nov 2020 - Dec 2020"
+        - "Optimised algorithmic trading strategies through Analysis and Backtesting, achieving portfolio returns of 16%."
+        - "Leveraged SQL for efficient financial data processing and implemented Python-based trading execution, enhancing system performance and accuracy."
+        - "Streamlined trading workflows and delivered insights, reducing execution time by 40% and aligning strategies with market dynamics."
+
+    - position: "Data Analyst"
+      company: "Indian Institute of Management"
+      time_period: "Non 2020 – Dec 2020"
       details:
-        - "As part of my work in the analytics project for an eye care store, I utilized my expertise in statistics to identify key business insights that allowed me to derive accurate inventory numbers for lenses. By applying statistical methods to analyze demand patterns and trends, I was able to make data-driven decisions that significantly improved the clinic's demand fulfillment rate. Specifically, I was able to increase the rate from 45% to over 80%, leading to increased patient satisfaction and improved operational efficiency."
+        - "Optimised inventory management for an eye clinic, cutting waste by 30% and increasing profitability by 15% with data-driven forecasting."
+        - "Built predictive models and dashboards using Python, SQL, and Power BI, enhancing stock availability by 25% and enabling real-time tracking."
+        - "Identified inefficiencies and provided insights, aligning inventory strategies with operational and financial objectives."
+  # Internships:
+  #   - position: "Analyst and Strategy Development"
+  #     company: "RG Enterprises"
+  #     time_period: "Jan 2021 - Apr 2021"
+  #     details:
+  #       - "As part of my work in algorithmic trading, I conducted extensive back-testing on four different trading models using Python. Through rigorous testing and analysis, I was able to achieve a Calmar Ratio of 6+, which is a widely recognized measure of a trading system's performance. In addition to this, I also designed and implemented two brand new trading models from scratch, leveraging my expertise in Python and financial markets. Once complete, I deployed these models on a server, ensuring reliable and efficient execution of trades."
+  #   - position: "Data Analyst Intern"
+  #     company: " Indian Institute of Management, Lucknow"
+  #     time_period: "Nov 2020 - Dec 2020"
+  #     details:
+  #       - "As part of my work in the analytics project for an eye care store, I utilized my expertise in statistics to identify key business insights that allowed me to derive accurate inventory numbers for lenses. By applying statistical methods to analyze demand patterns and trends, I was able to make data-driven decisions that significantly improved the clinic's demand fulfillment rate. Specifically, I was able to increase the rate from 45% to over 80%, leading to increased patient satisfaction and improved operational efficiency."
     
   Skills:
     - category: "Programming Languages"
@@ -129,7 +126,10 @@ projects:
     description: "The Image Captioning Project combines InceptionV3 for image feature extraction and an LSTM-based decoder to generate descriptive captions for images. It preprocesses images and text, uses InceptionV3 to extract features, and trains the LSTM to predict captions from these features. The project demonstrates expertise in deep learning, and sequence modeling, showcasing skills in TensorFlow/Keras and working with image and text data."
     link: "https://github.com/MohakGangwani/Image-Captioning"
     image: "img/image captioning project.png"
-
+  - title: "Marketing Analytics Dashboard"
+    description: "The Marketing Analytics Dashboard offers an intuitive interface for visualising key marketing metrics, such as customer sentiment, product conversion rates, and social media engagement trends. Key features include real-time data updates, interactive filtering options, and drill-down capabilities for in-depth analysis. It also provides clear visualizations of performance across multiple channels, enabling businesses to identify trends and make data-driven decisions to optimise marketing efforts."
+    link: "https://github.com/MohakGangwani/Image-Captioning"
+    image: "img/marketing analytics dashboard.png"
 contact:
   phone: "(+91) 9999517520"
   phone-link: "tel:+919999517520"
