@@ -10,13 +10,13 @@ resume:
     name: "Mohak Gangwani"
     profile: "Data Scientist"
     email: "mohakmg99@gmail.com"
-    phone: "(+44) 7741873577"
+    phone: "(+91) 9999517520"
     linkedin-link: "https://www.linkedin.com/in/mohak-gangwani/"
     github-link: "https://github.com/MohakGangwani/"
   Summary:
     details: "Mohak Gangwani is a dedicated Data Scientist with a strong foundation in mathematics and a passion for solving complex problems through data. With over two years of professional experience and a recently completed M.S. in Data Science from the University of Nottingham, he has successfully contributed to impactful projects across various industries. In his previous roles, Mohak has demonstrated expertise in managing data science projects, developing predictive models, and delivering actionable insights to drive business decisions. His academic and professional journey reflects his commitment to leveraging data-driven strategies for meaningful outcomes. Mohak is eager to apply his skills and experience to innovative challenges, contributing to projects that create lasting value."
     address: Delhi, India
-    phone: "(+44) 7741873577"
+    phone: "(+91) 9999517520"
     email: "mohakmg99@gmail.com"
   Education:
     - degree: "M.S. Data Science"
@@ -135,8 +135,8 @@ projects:
     link: "https://github.com/MohakGangwani/Marketing-Analytics-Dashboard"
     image: "img/marketing analytics dashboard.png"
 contact:
-  phone: "(+44) 7741873577"
-  phone-link: "tel:+447741873577"
+  phone: "(+91) 9999517520"
+  phone-link: "tel:+919999517520"
   email: "mohakmg99@gmail.com"
   email-link: "mailto:mohakmg99@gmail.com"
   linkedin: "mohak-gangwani"
