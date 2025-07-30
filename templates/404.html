@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="error-page section bg-light py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center">
+                <div class="error-content" data-aos="fade-up">
+                    <h1 class="display-1 text-muted">404</h1>
+                    <h2 class="mb-4">Page Not Found</h2>
+                    <p class="lead mb-4">The page you're looking for doesn't exist or has been moved.</p>
+                    <a href="{{ url_for('home') }}" class="btn btn-primary">Go Back Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

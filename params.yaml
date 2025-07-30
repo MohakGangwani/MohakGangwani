@@ -10,13 +10,13 @@ resume:
     name: "Mohak Gangwani"
     profile: "Data Scientist"
     email: "mohakmg99@gmail.com"
-    phone: "(+91) 9999517520"
+    phone: "(+44) 7741873577"
     linkedin-link: "https://www.linkedin.com/in/mohak-gangwani/"
     github-link: "https://github.com/MohakGangwani/"
   Summary:
     details: "Mohak Gangwani is a dedicated Data Scientist with a strong foundation in mathematics and a passion for solving complex problems through data. With over two years of professional experience and a recently completed M.S. in Data Science from the University of Nottingham, he has successfully contributed to impactful projects across various industries. In his previous roles, Mohak has demonstrated expertise in managing data science projects, developing predictive models, and delivering actionable insights to drive business decisions. His academic and professional journey reflects his commitment to leveraging data-driven strategies for meaningful outcomes. Mohak is eager to apply his skills and experience to innovative challenges, contributing to projects that create lasting value."
-    address: Delhi, India
-    phone: "(+91) 9999517520"
+    address: United Kingdom
+    phone: "(+44) 7741873577"
     email: "mohakmg99@gmail.com"
   Education:
     - degree: "M.S. Data Science"
@@ -30,6 +30,13 @@ resume:
       details:
         - "Modules: Linear Algebra, Calculus, Statistics"
   Work Experience:
+    - position: "Data Scientist"
+      company: "SourceFuse"
+      time_period: "May 2025 – Present"
+      details:
+        - "Enabled sales and marketing performance and forecasting insights for an S&P 500 company by building an end-to-end pipeline, creating Athena views, and developing AWS Glue jobs for data processing."
+        - "Developed interactive QuickSight dashboards for sales and forecast KPIs, allowing business teams to monitor real-time trends and performance."
+        - "Collaborated with DevOps and Sales teams to align data infrastructure with business requirements, ensuring accuracy and availability of key metrics."
     - position: "Senior Data Analyst"
       company: "Escalent"
       time_period: "May 2021 – Aug 2023"
@@ -49,7 +56,7 @@ resume:
 
     - position: "Data Analyst"
       company: "Indian Institute of Management"
-      time_period: "Non 2020 – Dec 2020"
+      time_period: "Nov 2020 – Dec 2020"
       details:
         - "Optimised inventory management for an eye clinic, cutting waste by 30% and increasing profitability by 15% with data-driven forecasting."
         - "Built predictive models and dashboards using Python, SQL, and Power BI, enhancing stock availability by 25% and enabling real-time tracking."
@@ -122,21 +129,25 @@ projects:
     description: "The Movie Recommendation System is a Python and Flask-based project that uses Content-Based Filtering to recommend movies based on metadata like genres, cast, and descriptions. It leverages machine learning techniques (TF-IDF and KNN) for similarity calculations and features an interactive web interface for real-time recommendations. The project highlights skills in data preprocessing, NLP, and web deployment."
     link: "https://github.com/MohakGangwani/Movie-Recommender-System"
     image: "img/movie recommendation system.jpg"
+    tags: ["Python", "Flask", "NLP", "TF-IDF", "KNN", "Content-Based Filtering", "Web Development"]
   - title: "RAGSwitch"
     description: "Developed a chatbot using Retrieval-Augmented Generation (RAG) for exploring and comparing language models via Ollama. Utilised LangChain to process user-uploaded documents and create vector stores for context-based query handling. Implemented a real-time chat interface with Streamlit, supporting both single-model and model-comparison modes. Integrated OpenAI and Ollama models, providing an efficient document ingestion and retrieval system with real-time response streaming."
     link: "https://github.com/MohakGangwani/RAGSwitch"
     image: "img/ragswitch project.png"
+    tags: ["RAG", "LangChain", "Streamlit", "OpenAI", "Ollama", "Vector Stores", "LLM", "Chatbot"]
   - title: "Image Captioning Project"
     description: "The Image Captioning Project combines InceptionV3 for image feature extraction and an LSTM-based decoder to generate descriptive captions for images. It preprocesses images and text, uses InceptionV3 to extract features, and trains the LSTM to predict captions from these features. The project demonstrates expertise in deep learning, and sequence modeling, showcasing skills in TensorFlow/Keras and working with image and text data."
     link: "https://github.com/MohakGangwani/Image-Captioning"
     image: "img/image captioning project.png"
+    tags: ["Deep Learning", "TensorFlow", "InceptionV3", "LSTM", "Computer Vision", "NLP", "Image Processing"]
   - title: "Marketing Analytics Dashboard"
     description: "The Marketing Analytics Dashboard offers an intuitive interface for visualising key marketing metrics, such as customer sentiment, product conversion rates, and social media engagement trends. Key features include real-time data updates, interactive filtering options, and drill-down capabilities for in-depth analysis. It also provides clear visualizations of performance across multiple channels, enabling businesses to identify trends and make data-driven decisions to optimise marketing efforts."
     link: "https://github.com/MohakGangwani/Marketing-Analytics-Dashboard"
     image: "img/marketing analytics dashboard.png"
+    tags: ["Data Visualization", "Dashboard", "Analytics", "Business Intelligence", "Real-time Data", "Marketing Metrics"]
 contact:
-  phone: "(+91) 9999517520"
-  phone-link: "tel:+919999517520"
+  phone: "(+44) 7741873577"
+  phone-link: "tel:+447741873577"
   email: "mohakmg99@gmail.com"
   email-link: "mailto:mohakmg99@gmail.com"
   linkedin: "mohak-gangwani"

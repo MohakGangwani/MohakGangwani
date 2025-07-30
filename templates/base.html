@@ -1,121 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>{{title}}</title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="static/img/apple-touch-icon.png">
-    <link rel="icon" type="static/img/png" sizes="32x32" href="static/img/favicon-32x32.png">
-    <link rel="icon" type="static/img/png" sizes="16x16" href="static/img/favicon-16x16.png">
-    <link rel="manifest" href="static/img/site.webmanifest">
-    <!-- <link href="{{ url_for('static', filename='img/favicon.png')}}" rel="icon">
-    <link href="{{ url_for('static', filename='img/apple-touch-icon.png')}}" rel="apple-touch-icon"> -->
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect">
-    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='vendor/aos/aos.css')}}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
-
-    <!-- Main CSS File -->
-    <link href="{{ url_for('static', filename='css/main.css')}}" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mohak Gangwani - Data Scientist{% endblock %}</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Mohak Gangwani - Data Scientist, Machine Learning Engineer, and Analytics Consultant with expertise in Python, ML, NLP, and data visualization.">
+    <meta name="keywords" content="Data Scientist, Machine Learning, Python, Analytics, NLP, Data Visualization, Portfolio">
+    <meta name="author" content="Mohak Gangwani">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mohakgangwani.com/">
+    <meta property="og:title" content="Mohak Gangwani - Data Scientist">
+    <meta property="og:description" content="Data Scientist, Machine Learning Engineer, and Analytics Consultant with expertise in Python, ML, NLP, and data visualization.">
+    <meta property="og:image" content="{{ url_for('static', filename='img/about-me.jpg', _external=True) }}">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mohakgangwani.com/">
+    <meta property="twitter:title" content="Mohak Gangwani - Data Scientist">
+    <meta property="twitter:description" content="Data Scientist, Machine Learning Engineer, and Analytics Consultant with expertise in Python, ML, NLP, and data visualization.">
+    <meta property="twitter:image" content="{{ url_for('static', filename='img/about-me.jpg', _external=True) }}">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ request.url }}">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Mohak Gangwani",
+        "jobTitle": "Data Scientist",
+        "description": "Data Scientist, Machine Learning Engineer, and Analytics Consultant with expertise in Python, ML, NLP, and data visualization.",
+        "url": "https://mohakgangwani.com",
+        "image": "{{ url_for('static', filename='img/about-me.jpg', _external=True) }}",
+        "email": "mohakmg99@gmail.com",
+        "telephone": "(+44) 7741873577",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "United Kingdom",
+            "addressCountry": "UK"
+        },
+        "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "University of Nottingham"
+        },
+        "knowsAbout": [
+            "Data Science",
+            "Machine Learning",
+            "Python",
+            "Natural Language Processing",
+            "Data Visualization",
+            "Statistical Analysis"
+        ],
+        "sameAs": [
+            "https://www.linkedin.com/in/mohak-gangwani/",
+            "https://github.com/MohakGangwani/"
+        ]
+    }
+    </script>
 </head>
 
-<body class="index-page">
-
-    <header id="header" class="header d-flex align-items-center sticky-top">
-        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-
-            <a href="index" class="logo d-flex align-items-center">
-                <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!-- <img src="static/img/logo.png" alt=""> -->
-                <h1 class="sitename">Mohak Gangwani</h1>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('home') }}">
+                <i class="bi bi-code-slash"></i>Mohak Gangwani
             </a>
-
-            <nav id="navmenu" class="navmenu">
-                <ul>
-                    <li><a href="{{ url_for('home') }}" class="{{ navbar['index'] }}">Home<br></a></li>
-                    <li><a href="{{ url_for('resume') }}" class="{{ navbar['resume'] }}">Resume</a></li>
-                    <!-- <li><a href="services" class="{{ navbar['services'] }}">Services</a></li> -->
-                    <li><a href="{{ url_for('projects') }}" class="{{ navbar['projects'] }}">Projects</a></li>
-                    <li><a href="{{ url_for('contact') }}" class="{{ navbar['contact'] }}">Contact</a></li>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {{ 'active' if (navbar is defined and navbar['index'] == 'active') else '' }}" href="{{ url_for('home') }}">
+                            <i class="bi bi-house"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ 'active' if (navbar is defined and navbar['resume'] == 'active') else '' }}" href="{{ url_for('resume') }}">
+                            <i class="bi bi-file-earmark-text"></i>Resume
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ 'active' if (navbar is defined and navbar['services'] == 'active') else '' }}" href="{{ url_for('services') }}">
+                            <i class="bi bi-gear"></i>Services
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ 'active' if (navbar is defined and navbar['projects'] == 'active') else '' }}" href="{{ url_for('projects') }}">
+                            <i class="bi bi-folder"></i>Projects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ 'active' if (navbar is defined and navbar['contact'] == 'active') else '' }}" href="{{ url_for('contact') }}">
+                            <i class="bi bi-envelope"></i>Contact
+                        </a>
+                    </li>
                 </ul>
-                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-            </nav>
-
+            </div>
         </div>
-    </header>
+    </nav>
 
-    <main class="main">
+    <!-- Main Content -->
+    <main style="margin-top: 80px;">
+        <!-- Flash Messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
         <div class="container mt-3">
             {% for category, message in messages %}
             <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                <i class="bi bi-{{ 'check-circle' if category == 'success' else 'exclamation-triangle' }} me-2"></i>
                 {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
             {% endfor %}
         </div>
         {% endif %}
         {% endwith %}
+        
         {% block content %}{% endblock %}
     </main>
 
-    <!-- <footer id="footer" class="footer accent-background">
+    <!-- Scroll to Top -->
+    <a href="#" class="scroll-top" id="scrollTop">
+        <i class="bi bi-arrow-up"></i>
+    </a>
 
-        <div class="container">
-            <div class="copyright text-center ">
-                <p>© <span>Copyright</span> <strong class="px-1 sitename">Mohak Gangwani</strong> <span>All Rights
-                        Reserved</span></p>
-            </div>
-            <div class="social-links d-flex justify-content-center">
-                <a href="{{ content }}"><i class="bi bi-github"></i></a>
-                <a href="{{ content }}"><i class="bi bi-linkedin"></i></a>
-            </div>
-            <div class="credits">
-                Designed by <a href="/">Mohak Gangwani</a>
-            </div>
-        </div>
-
-    </footer> -->
-
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
-
-    <!-- Preloader -->
-    <div id="preloader"></div>
-
-    <!-- Vendor JS Files -->
-    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='vendor/php-email-form/validate.js') }}"></script>
-    <script src="{{ url_for('static', filename='vendor/aos/aos.js') }}"></script>
-    <script src="{{ url_for('static', filename='vendor/typed.js/typed.umd.js') }}"></script>
-    <script src="{{ url_for('static', filename='vendor/waypoints/noframework.waypoints.js') }}"></script>
-    <script src="{{ url_for('static', filename='vendor/purecounter/purecounter_vanilla.js') }}"></script>
-    <script src="{{ url_for('static', filename='vendor/glightbox/js/glightbox.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.js') }}"></script>
-
-    <!-- Main JS File -->
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    
+    <!-- Custom JavaScript -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-
+    
+    <!-- Typed.js strings for home page -->
+    {% if content and content.index and content.index.designations %}
+    <script>
+        window.typedStrings = {{ content['index']['designations'].split(', ') | tojson }};
+    </script>
+    {% endif %}
 </body>
-
 </html>

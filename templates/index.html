@@ -1,15 +1,203 @@
 {% extends "base.html" %}
 {% block content %}
+
 <!-- Hero Section -->
-<section id="hero" class="hero section dark-background">
+<section class="hero-section">
+    <!-- Background Pattern -->
+    <div class="hero-pattern"></div>
+    
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="hero-content text-white">
+                    <h1 class="display-3 fw-bold mb-4">
+                        Hi, I'm <span class="text-warning">{{ content['index']['name'] }}</span>
+                    </h1>
+                    <p class="lead mb-4">
+                        I'm a <span id="typed-text" class="fw-semibold"></span>
+                    </p>
+                    <p class="mb-5">
+                        {{ content['index']['introduction'] }}
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="{{ url_for('resume') }}" class="btn btn-light btn-lg me-3 mb-3">
+                            <i class="bi bi-file-earmark-text me-2"></i>View Resume
+                        </a>
+                        <a href="{{ url_for('projects') }}" class="btn btn-outline-light btn-lg me-3 mb-3">
+                            <i class="bi bi-folder me-2"></i>My Projects
+                        </a>
+                        <a href="{{ url_for('contact') }}" class="btn btn-warning btn-lg mb-3">
+                            <i class="bi bi-envelope me-2"></i>Get In Touch
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="hero-image text-center">
+                    <div class="profile-card glass-card">
+                        <img src="{{ url_for('static', filename=content['resume']['About']['img']) }}" 
+                             alt="Mohak Gangwani" 
+                             class="img-fluid rounded-circle mb-3 profile-image">
+                        <h4 class="text-white mb-2">{{ content['resume']['About']['name'] }}</h4>
+                        <p class="text-white-50 mb-0">{{ content['resume']['About']['profile'] }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+        <div class="mouse">
+            <div class="wheel"></div>
+        </div>
+    </div>
+</section>
 
-  <img src="{{ url_for('static', filename=content['index']['bg-img']) }}" alt="" data-aos="fade-in">
+<!-- Quick Stats -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="row g-4 text-center">
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-card">
+                    <div class="stat-icon mb-3">
+                        <i class="bi bi-briefcase"></i>
+                    </div>
+                    <h3 class="fw-bold gradient-text counter" data-target="3">0</h3>
+                    <p class="text-muted">Years Experience</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-card">
+                    <div class="stat-icon mb-3">
+                        <i class="bi bi-folder"></i>
+                    </div>
+                    <h3 class="fw-bold gradient-text counter" data-target="10">0</h3>
+                    <p class="text-muted">Projects Completed</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="stat-card">
+                    <div class="stat-icon mb-3">
+                        <i class="bi bi-code-slash"></i>
+                    </div>
+                    <h3 class="fw-bold gradient-text counter" data-target="15">0</h3>
+                    <p class="text-muted">Technologies</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+                <div class="stat-card">
+                    <div class="stat-icon mb-3">
+                        <i class="bi bi-award"></i>
+                    </div>
+                    <h3 class="fw-bold gradient-text">M.S.</h3>
+                    <p class="text-muted">Data Science</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-  <div class="container d-flex flex-column align-items-center justify-content-center text-center" data-aos="fade-up"
-    data-aos-delay="100">
-    <h2>I am {{ content['index']['name'] }}</h2>
-    <p><span class="typed" data-typed-items="{{ content['index']['designations'] }}"></span></p>
-  </div>
+<!-- Featured Skills -->
+<section class="section">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Core Expertise</h2>
+            <p>Technologies and skills that drive my work</p>
+        </div>
+        
+        <div class="row g-4">
+            {% for skill_category in content['resume']['Skills'][:3] %}
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="{{ loop.index * 100 }}">
+                <div class="skill-card card h-100 d-flex flex-column">
+                    <div class="card-body text-center d-flex flex-column">
+                        <div class="skill-icon mb-3">
+                            {% if skill_category['category'] == 'Programming Languages' %}
+                                <i class="bi bi-code-slash"></i>
+                            {% elif skill_category['category'] == 'Data Science Techniques' %}
+                                <i class="bi bi-graph-up"></i>
+                            {% else %}
+                                <i class="bi bi-database"></i>
+                            {% endif %}
+                        </div>
+                        <h5 class="card-title gradient-text mb-3">{{ skill_category['category'] }}</h5>
+                        <div class="skill-tags mb-3 flex-grow-1">
+                            {% for skill in skill_category['list'][:4] %}
+                            <span class="badge bg-light text-dark me-1 mb-1 skill-badge" data-skill="{{ skill }}">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="skill-progress mt-auto">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" 
+                                     data-width="{% if skill_category['category'] == 'Programming Languages' %}95{% elif skill_category['category'] == 'Data Science Techniques' %}90{% else %}85{% endif %}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
 
-</section><!-- /Hero Section -->
+<!-- Latest Projects Preview -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Latest Projects</h2>
+            <p>Showcasing my recent work in data science and analytics</p>
+        </div>
+        
+        <div class="row g-4">
+            {% for project in content['projects'][:3] %}
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="{{ loop.index * 100 }}">
+                <div class="project-preview-card card h-100">
+                    <div class="project-image position-relative overflow-hidden">
+                        <img src="{{ url_for('static', filename=project['image']) }}" 
+                             class="card-img-top" 
+                             alt="{{ project['title'] }}">
+                        <div class="project-overlay">
+                            <a href="{{ project['link'] }}" class="btn btn-light btn-sm" target="_blank">
+                                <i class="bi bi-github me-1"></i>View Code
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title text-primary mb-3">{{ project['title'] }}</h5>
+                        <p class="card-text flex-grow-1">{{ project['description'][:120] }}...</p>
+                        <div class="project-tags mt-3">
+                            {% for tag in project.tags[:3] %}
+                            <span class="badge {% if 'Python' in tag or 'Flask' in tag %}bg-primary{% elif 'Deep Learning' in tag or 'TensorFlow' in tag or 'NLP' in tag %}bg-success{% elif 'RAG' in tag or 'LLM' in tag or 'OpenAI' in tag %}bg-warning{% elif 'Data' in tag or 'Analytics' in tag or 'Dashboard' in tag %}bg-info{% else %}bg-secondary{% endif %} me-1 mb-1">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="{{ url_for('projects') }}" class="btn btn-primary btn-lg">
+                <i class="bi bi-folder me-2"></i>View All Projects
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="section call-to-action">
+    <div class="container text-center text-white">
+        <div data-aos="fade-up">
+            <h2 class="mb-4">Ready to Work Together?</h2>
+            <p class="lead mb-4">Let's discuss how I can help bring your data science projects to life.</p>
+            <a href="{{ url_for('contact') }}" class="btn btn-light btn-lg me-3">
+                <i class="bi bi-envelope me-2"></i>Start a Conversation
+            </a>
+            <a href="{{ url_for('services') }}" class="btn btn-outline-light btn-lg">
+                <i class="bi bi-gear me-2"></i>View Services
+            </a>
+        </div>
+    </div>
+</section>
+
 {% endblock %}

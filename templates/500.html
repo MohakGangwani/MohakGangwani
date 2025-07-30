@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="error-page section bg-light py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center">
+                <div class="error-content" data-aos="fade-up">
+                    <h1 class="display-1 text-muted">500</h1>
+                    <h2 class="mb-4">Server Error</h2>
+                    <p class="lead mb-4">Something went wrong on our end. Please try again later.</p>
+                    <a href="{{ url_for('home') }}" class="btn btn-primary">Go Back Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

@@ -1,16 +1,197 @@
 {% extends "base.html" %}
 {% block content %}
-<section id="services" class="services section">
+
+<!-- Services Hero -->
+<section class="section bg-light">
     <div class="container">
-        <h2>Services</h2>
-        <div class="row">
-            {% for service in content['services'] %}
-            <div class="col-md-4">
-                <h3>{{ service['title'] }}</h3>
-                <p>{{ service['description'] }}</p>
-            </div>
-            {% endfor %}
+        <div class="section-title text-center" data-aos="fade-up">
+            <h1>My Services</h1>
+            <p class="lead">Comprehensive data science and analytics solutions</p>
         </div>
     </div>
 </section>
+
+<!-- Services Grid -->
+<section class="section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-card card h-100">
+                    <div class="card-body text-center">
+                        <div class="service-icon mb-4">
+                            <i class="bi bi-graph-up"></i>
+                        </div>
+                        <h4 class="card-title mb-3">Data Analysis & Visualization</h4>
+                        <p class="card-text">Transform raw data into actionable insights with comprehensive analysis and interactive visualizations using tools like Python, R, Tableau, and Power BI.</p>
+                        <ul class="list-unstyled text-start">
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Exploratory Data Analysis</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Statistical Analysis</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Interactive Dashboards</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Data Storytelling</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-card card h-100">
+                    <div class="card-body text-center">
+                        <div class="service-icon mb-4">
+                            <i class="bi bi-cpu"></i>
+                        </div>
+                        <h4 class="card-title mb-3">Machine Learning Solutions</h4>
+                        <p class="card-text">Develop and deploy machine learning models for prediction, classification, and pattern recognition using advanced algorithms and frameworks.</p>
+                        <ul class="list-unstyled text-start">
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Predictive Modeling</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Natural Language Processing</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Computer Vision</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Model Deployment</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-card card h-100">
+                    <div class="card-body text-center">
+                        <div class="service-icon mb-4">
+                            <i class="bi bi-database"></i>
+                        </div>
+                        <h4 class="card-title mb-3">Data Engineering</h4>
+                        <p class="card-text">Build robust data pipelines and infrastructure for efficient data processing, storage, and retrieval using modern cloud technologies.</p>
+                        <ul class="list-unstyled text-start">
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>ETL Pipeline Development</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Data Warehouse Design</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Cloud Data Solutions</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Data Quality Assurance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="service-card card h-100">
+                    <div class="card-body text-center">
+                        <div class="service-icon mb-4">
+                            <i class="bi bi-chat-dots"></i>
+                        </div>
+                        <h4 class="card-title mb-3">Business Intelligence</h4>
+                        <p class="card-text">Create comprehensive BI solutions that help organizations make data-driven decisions with real-time analytics and reporting.</p>
+                        <ul class="list-unstyled text-start">
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>KPI Dashboard Development</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Performance Analytics</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Automated Reporting</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Data Governance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                <div class="service-card card h-100">
+                    <div class="card-body text-center">
+                        <div class="service-icon mb-4">
+                            <i class="bi bi-gear"></i>
+                        </div>
+                        <h4 class="card-title mb-3">Process Optimization</h4>
+                        <p class="card-text">Optimize business processes through data analysis, automation, and continuous improvement methodologies.</p>
+                        <ul class="list-unstyled text-start">
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Process Analysis</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Automation Solutions</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Performance Monitoring</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Continuous Improvement</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                <div class="service-card card h-100">
+                    <div class="card-body text-center">
+                        <div class="service-icon mb-4">
+                            <i class="bi bi-lightbulb"></i>
+                        </div>
+                        <h4 class="card-title mb-3">Consulting & Strategy</h4>
+                        <p class="card-text">Provide strategic guidance on data initiatives, technology adoption, and digital transformation projects.</p>
+                        <ul class="list-unstyled text-start">
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Data Strategy Planning</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Technology Assessment</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Team Training</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Project Management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Process Section -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="section-title text-center" data-aos="fade-up">
+            <h2>My Process</h2>
+            <p>How I approach data science projects</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="process-card card h-100">
+                    <div class="card-body text-center">
+                        <div class="process-number mb-3">01</div>
+                        <h5 class="card-title">Discovery</h5>
+                        <p class="card-text">Understand your business needs, objectives, and data requirements to define the project scope.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="process-card card h-100">
+                    <div class="card-body text-center">
+                        <div class="process-number mb-3">02</div>
+                        <h5 class="card-title">Analysis</h5>
+                        <p class="card-text">Explore and analyze your data to identify patterns, trends, and insights that drive decision-making.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="process-card card h-100">
+                    <div class="card-body text-center">
+                        <div class="process-number mb-3">03</div>
+                        <h5 class="card-title">Development</h5>
+                        <p class="card-text">Build and test models, dashboards, or solutions using best practices and modern technologies.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="process-card card h-100">
+                    <div class="card-body text-center">
+                        <div class="process-number mb-3">04</div>
+                        <h5 class="card-title">Deployment</h5>
+                        <p class="card-text">Implement the solution in production, provide documentation, and ensure smooth handover.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="section bg-primary text-white">
+    <div class="container text-center">
+        <div data-aos="fade-up">
+            <h2 class="mb-4">Ready to Start Your Project?</h2>
+            <p class="lead mb-4">Let's discuss how I can help you achieve your data science goals.</p>
+            <a href="{{ url_for('contact') }}" class="btn btn-light btn-lg me-3">
+                <i class="bi bi-envelope me-2"></i>Get In Touch
+            </a>
+            <a href="{{ url_for('projects') }}" class="btn btn-outline-light btn-lg">
+                <i class="bi bi-folder me-2"></i>View My Work
+            </a>
+        </div>
+    </div>
+</section>
+
 {% endblock %}

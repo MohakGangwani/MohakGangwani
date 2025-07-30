@@ -1,102 +1,218 @@
 {% extends "base.html" %}
 {% block content %}
-<!-- Contact Section -->
-<section id="contact" class="contact section bg-light py-5">
 
-    <!-- Section Title -->
-    <div class="container section-title" data-aos="fade-up">
-        <h2>Get in touch</h2>
-    </div><!-- End Section Title -->
-
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="info-wrap" data-aos="fade-up" data-aos-delay="200">
-            <div class="row gy-5">
-                <div class="col-lg-4">
-                    <a href="{{ content['contact']['phone-link'] }}">
-                        <div class="info-item d-flex align-items-center">
-                            <i class="bi bi-telephone flex-shrink-0"></i>
-                            <div>
-                                <h3>Call Me</h3>
-                                <p>{{ content['contact']['phone'] }}</p>
-                            </div>
-                        </div>
-                    </a>
-                </div><!-- End Info Item -->
-
-                <div class="col-lg-4">
-                    <a href="{{ content['contact']['email-link'] }}">
-                        <div class="info-item d-flex align-items-center">
-                            <i class="bi bi-envelope flex-shrink-0"></i>
-                            <div>
-                                <h3>Email Me</h3>
-                                <p>{{ content['contact']['email'] }}</p>
-                            </div>
-                        </div>
-                    </a>
-                </div><!-- End Info Item -->
-
-                <div class="col-lg-4">
-                    <div class="info-item d-flex align-items-center">
-                        <a href="{{ content['contact']['linkedin-link'] }}">
-                            <i class="bi bi-linkedin flex-shrink-0"></i>
-                            <div>
-                                <h3>Reach out</h3>
-                                <p>{{ content['contact']['linkedin'] }}</p>
-                        </a>
-                    </div>
-                </div>
-            </div><!-- End Info Item -->
-
+<!-- Contact Hero -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="section-title text-center" data-aos="fade-up">
+            <h1>Get In Touch</h1>
+            <p class="lead">Let's discuss your next project or opportunity</p>
         </div>
     </div>
+</section>
 
-        <!-- Flash Messages -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        <div class="alert-container mb-4">
-            {% for category, message in messages %}
-            <div class="alert alert-{{ category }} alert-dismissible fade show text-center" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<!-- Contact Content -->
+<section class="section">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Contact Information -->
+            <div class="col-lg-5" data-aos="fade-right">
+                <div class="contact-info-card card h-100">
+                    <div class="card-body">
+                        <h3 class="mb-4">Let's Connect</h3>
+                        <p class="mb-4">I'm always interested in new opportunities and exciting projects. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+                        
+                        <div class="contact-details mb-4">
+                            <div class="contact-item mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="contact-icon me-3">
+                                        <i class="bi bi-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1">Email</h6>
+                                        <a href="mailto:{{ content['contact']['email'] }}" class="text-decoration-none">
+                                            {{ content['contact']['email'] }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="contact-icon me-3">
+                                        <i class="bi bi-telephone"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1">Phone</h6>
+                                        <a href="tel:{{ content['contact']['phone-link'] }}" class="text-decoration-none">
+                                            {{ content['contact']['phone'] }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="contact-icon me-3">
+                                        <i class="bi bi-geo-alt"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1">Location</h6>
+                                        <span>United Kingdom</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <h6 class="mb-3">Follow Me</h6>
+                            <a href="https://www.linkedin.com/in/{{ content['contact']['linkedin'] }}" class="btn btn-primary social-icon me-2" target="_blank">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                            <a href="{{ content['contact']['linkedin-link'] }}" class="btn btn-dark social-icon" target="_blank">
+                                <i class="bi bi-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            {% endfor %}
-        </div>
-        {% endif %}
-        {% endwith %}
-
-        <!-- Contact Form -->
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <div class="contact-form-container p-4 rounded shadow bg-white">
-                    <form action="/contact" method="POST" class="needs-validation" novalidate>
-                        <div class="mb-3">
-                            <label for="name" class="form-label fw-semibold">Your Name</label>
-                            <input type="text" class="form-control rounded-3" id="name" name="name" placeholder="Full Name" required>
-                            <div class="invalid-feedback">Please enter your name.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label fw-semibold">Your Email</label>
-                            <input type="email" class="form-control rounded-3" id="email" name="email" placeholder="username@email.com" required>
-                            <div class="invalid-feedback">Please enter a valid email address.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="subject" class="form-label fw-semibold">Subject</label>
-                            <input type="text" class="form-control rounded-3" id="subject" name="subject" placeholder="Subject" required>
-                            <div class="invalid-feedback">Please enter a subject.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label fw-semibold">Your Message</label>
-                            <textarea class="form-control rounded-3" id="message" name="message" rows="6" placeholder="Write your message here..." required></textarea>
-                            <div class="invalid-feedback">Please enter your message.</div>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary px-4 py-2">Send Message</button>
-                        </div>
-                    </form>
+            
+            <!-- Contact Form -->
+            <div class="col-lg-7" data-aos="fade-left">
+                <div class="contact-form-card card h-100">
+                    <div class="card-body">
+                        <h3 class="mb-4">Send Me a Message</h3>
+                        
+                        <form action="{{ url_for('contact') }}" method="POST" class="needs-validation" novalidate id="contactForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="name" class="form-label fw-semibold">Your Name *</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               id="name" 
+                                               name="name" 
+                                               placeholder="Full Name" 
+                                               value="{{ form_data.name if form_data else '' }}"
+                                               required>
+                                    </div>
+                                    <div class="invalid-feedback">Please enter your name.</div>
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label fw-semibold">Your Email *</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                        <input type="email" 
+                                               class="form-control" 
+                                               id="email" 
+                                               name="email" 
+                                               placeholder="username@email.com" 
+                                               value="{{ form_data.email if form_data else '' }}"
+                                               required>
+                                    </div>
+                                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                                    <div class="valid-feedback">Valid email!</div>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <label for="subject" class="form-label fw-semibold">Subject *</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-chat-text"></i></span>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               id="subject" 
+                                               name="subject" 
+                                               placeholder="What's this about?" 
+                                               value="{{ form_data.subject if form_data else '' }}"
+                                               required>
+                                    </div>
+                                    <div class="invalid-feedback">Please enter a subject.</div>
+                                    <div class="valid-feedback">Great subject!</div>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <label for="message" class="form-label fw-semibold">Your Message *</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-chat-dots"></i></span>
+                                        <textarea class="form-control" 
+                                                  id="message" 
+                                                  name="message" 
+                                                  rows="6" 
+                                                  placeholder="Tell me about your project or opportunity..." 
+                                                  required>{{ form_data.message if form_data else '' }}</textarea>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-2">
+                                        <div class="invalid-feedback">Please enter your message (minimum 10 characters).</div>
+                                        <div class="valid-feedback">Perfect message!</div>
+                                        <small class="text-muted">
+                                            <span id="charCount">0</span>/2000 characters
+                                        </small>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+                                        <span class="btn-text">
+                                            <i class="bi bi-send me-2"></i>Send Message
+                                        </span>
+                                        <span class="btn-loading d-none">
+                                            <span class="loading-spinner me-2"></span>Sending...
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<!-- Additional Info -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="info-card card h-100">
+                    <div class="card-body text-center">
+                        <div class="info-icon mb-3">
+                            <i class="bi bi-clock"></i>
+                        </div>
+                        <h5 class="card-title">Quick Response</h5>
+                        <p class="card-text">I typically respond to messages within 24 hours during business days.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="info-card card h-100">
+                    <div class="card-body text-center">
+                        <div class="info-icon mb-3">
+                            <i class="bi bi-globe"></i>
+                        </div>
+                        <h5 class="card-title">Remote Work</h5>
+                        <p class="card-text">I'm available for remote work and can collaborate with teams worldwide.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="info-card card h-100">
+                    <div class="card-body text-center">
+                        <div class="info-icon mb-3">
+                            <i class="bi bi-calendar-check"></i>
+                        </div>
+                        <h5 class="card-title">Flexible Schedule</h5>
+                        <p class="card-text">I can accommodate different time zones and flexible working arrangements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 {% endblock %}

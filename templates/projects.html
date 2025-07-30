@@ -1,27 +1,136 @@
 {% extends "base.html" %}
 {% block content %}
-<section id="portfolio" class="portfolio section">
+
+<!-- Projects Hero -->
+<section class="section bg-light">
     <div class="container">
-        <h2>Projects</h2>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="section-title text-center" data-aos="fade-up">
+            <h1>My Projects</h1>
+            <p class="lead">Showcasing my work in data science, machine learning, and analytics</p>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Grid -->
+<section class="section">
+    <div class="container">
+        <div class="row g-4" id="projectsGrid">
             {% for project in content['projects'] %}
-            <div class="col">
-                <!-- Project Card -->
-                <a href="{{ project['link'] }}" target="_blank">
-                    <div class="card h-100">
-                        <div class="ratio ratio-16x9">
-                            <img src="{{ url_for('static', filename=project['image']) }}" class="card-img-top img-fluid"
-                                alt="{{ project['title'] }}" style="object-fit: contain;">
-                        </div>
-                        <div class="card-body">
-                            <b><h5 class="card-title">{{ project['title'] }}</h5></b>
-                            <p class="card-text">{{ project['description'] }}</p>
+            <div class="col-lg-6 col-xl-4" data-aos="fade-up" data-aos-delay="{{ loop.index * 100 }}">
+                <div class="project-card card h-100">
+                    <div class="project-image position-relative overflow-hidden">
+                        <img src="{{ url_for('static', filename=project['image']) }}" 
+                             class="card-img-top" 
+                             alt="{{ project['title'] }}">
+                        <div class="project-overlay">
+                            <div class="overlay-content">
+                                <a href="{{ project['link'] }}" class="btn btn-light btn-sm overlay-btn" target="_blank">
+                                    <i class="bi bi-github me-1"></i>View Code
+                                </a>
+                                <button class="btn btn-outline-light btn-sm overlay-btn project-details-btn" 
+                                        data-project="{{ project['title'] }}" 
+                                        data-description="{{ project['description'] }}"
+                                        data-tags="{{ project.tags | join(', ') }}">
+                                    <i class="bi bi-info-circle me-1"></i>Details
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </a>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title text-primary mb-3">{{ project['title'] }}</h5>
+                        <p class="card-text flex-grow-1">{{ project['description'][:120] }}...</p>
+                        <div class="project-tags mt-3">
+                            {% for tag in project.tags[:4] %}
+                            <span class="badge {% if 'Python' in tag or 'Flask' in tag %}bg-primary{% elif 'Deep Learning' in tag or 'TensorFlow' in tag or 'NLP' in tag %}bg-success{% elif 'RAG' in tag or 'LLM' in tag or 'OpenAI' in tag %}bg-warning{% elif 'Data' in tag or 'Analytics' in tag or 'Dashboard' in tag %}bg-info{% else %}bg-secondary{% endif %} me-1 mb-1">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
             </div>
             {% endfor %}
         </div>
     </div>
 </section>
+
+<!-- Project Details Modal -->
+<div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="projectModalLabel">Project Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="projectDetails">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="#" class="btn btn-primary" id="projectLink" target="_blank">
+                    <i class="bi bi-github me-1"></i>View on GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Skills Section -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="section-title text-center" data-aos="fade-up">
+            <h2>Technologies I Use</h2>
+            <p>Tools and frameworks that power my projects</p>
+        </div>
+        
+        <div class="row g-4">
+            {% for skill_category in content['resume']['Skills'] %}
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ loop.index * 100 }}">
+                <div class="tech-card card h-100">
+                    <div class="card-body text-center">
+                        <div class="tech-icon mb-3">
+                            {% if skill_category['category'] == 'Programming Languages' %}
+                                <i class="bi bi-code-slash"></i>
+                            {% elif skill_category['category'] == 'Data Science Techniques' %}
+                                <i class="bi bi-graph-up"></i>
+                            {% elif skill_category['category'] == 'Databases' %}
+                                <i class="bi bi-database"></i>
+                            {% elif skill_category['category'] == 'Deployment & CLoud Tools' %}
+                                <i class="bi bi-cloud"></i>
+                            {% elif skill_category['category'] == 'Data Visualization & Dashboarding' %}
+                                <i class="bi bi-bar-chart"></i>
+                            {% else %}
+                                <i class="bi bi-tools"></i>
+                            {% endif %}
+                        </div>
+                        <h5 class="card-title">{{ skill_category['category'] }}</h5>
+                        <div class="tech-tags">
+                            {% for skill in skill_category['list'] %}
+                            <span class="badge bg-light text-dark me-1 mb-1">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="section bg-primary text-white">
+    <div class="container text-center">
+        <div data-aos="fade-up">
+            <h2 class="mb-4">Interested in My Work?</h2>
+            <p class="lead mb-4">Let's discuss how I can contribute to your next project.</p>
+            <a href="{{ url_for('contact') }}" class="btn btn-light btn-lg me-3">
+                <i class="bi bi-envelope me-2"></i>Get In Touch
+            </a>
+            <a href="{{ url_for('resume') }}" class="btn btn-outline-light btn-lg">
+                <i class="bi bi-file-earmark-text me-2"></i>View Resume
+            </a>
+        </div>
+    </div>
+</section>
+
 {% endblock %}
