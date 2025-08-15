@@ -1,12 +1,12 @@
 index:
-  bg-img: "img/index-bg.JPG"
+  bg-img: "img/index-bg.webp"
   name: "Mohak Gangwani"
   designations: "Data Scientist, Machine Learning Engineer, Analytics Consultant, Analytics Engineer"
   introduction: "Welcome! I am Mohak Gangwani, a Data Science professional with a strong foundation in mathematics and a passion for solving complex problems through data. With expertise in machine learning, NLP, forecasting, and data visualization, I specialize in developing innovative solutions that drive impactful insights. Having recently completed my M.S. in Data Science, I am excited to apply my skills and knowledge to create meaningful outcomes. Explore my portfolio to learn more about my journey, skills, and projects."
 
 resume:
   About:
-    img: "img/about-me.jpg"
+    img: "img/about-me.webp"
     name: "Mohak Gangwani"
     profile: "Data Scientist"
     email: "mohakmg99@gmail.com"
@@ -85,7 +85,7 @@ resume:
         - "Machine Learning"
         - "Deep Learning"
         - "Natural Language Processing (NLP)"
-        - "Time Series FOrecasting"
+        - "Time Series Forecasting"
         - "Customer Segmentation"
         - "Market Mix Modelling"
         - "A/B Testing"
@@ -95,7 +95,7 @@ resume:
       list: 
         - "SQL"
         - "NoSQL"
-    - category: "Deployment & CLoud Tools"
+    - category: "Deployment & Cloud Tools"
       list: 
         - "Git"
         - "GitHub"
@@ -114,12 +114,12 @@ resume:
       - "Linux & Command Line Commands"
   Testimonials:
     - name: "Sameer Saurabh"
-      image: "img/testimonials/Sameer Saurabh.jpg"
+      image: "img/testimonials/Sameer Saurabh.webp"
       designation: "Director - Data Science"
       company: "Escalent"
       details: "I had a great experience working with Mohak. We worked together for around 1 year where he developed a very complex web-based application for one of our clients. His background in Mathematics came very handy to the entire team. He did a lot of heavy lifting in the analytical thinking. I think he is very devoted towards his work and always tries to give his maximum in any deliverable. I have no hesitation in recommending him for his programming, analytical and mathematical abilities. I look forward to working with him again and also wish him the best of luck!"
     - name: "Lokesh Vaishnav"
-      image: "img/testimonials/Lokesh Vaishnav.jpeg"
+      image: "img/testimonials/Lokesh Vaishnav.webp"
       designation: "Analyst - Data Science"
       company: "Escalent"
       details: "Mohak and I worked together in a same team for a project which was basically related to Data Science + App development. He is a great mathematician and coder. His debugging skills are awesome. His knowledge of python programming is commendable. He thinks in a lean way and brings out the best possible solution. He also knows web development and have done awesome job in that department too. Overall I really liked working with him as he is a great team player as well I got to learn so many things from him. Just wanted to say him that keep rocking and all the very best for your future endeavours."
@@ -128,22 +128,22 @@ projects:
   - title: "Movie Recommender System"
     description: "The Movie Recommendation System is a Python and Flask-based project that uses Content-Based Filtering to recommend movies based on metadata like genres, cast, and descriptions. It leverages machine learning techniques (TF-IDF and KNN) for similarity calculations and features an interactive web interface for real-time recommendations. The project highlights skills in data preprocessing, NLP, and web deployment."
     link: "https://github.com/MohakGangwani/Movie-Recommender-System"
-    image: "img/movie recommendation system.jpg"
+    image: "img/movie-recommendation-system.webp"
     tags: ["Python", "Flask", "NLP", "TF-IDF", "KNN", "Content-Based Filtering", "Web Development"]
   - title: "RAGSwitch"
     description: "Developed a chatbot using Retrieval-Augmented Generation (RAG) for exploring and comparing language models via Ollama. Utilised LangChain to process user-uploaded documents and create vector stores for context-based query handling. Implemented a real-time chat interface with Streamlit, supporting both single-model and model-comparison modes. Integrated OpenAI and Ollama models, providing an efficient document ingestion and retrieval system with real-time response streaming."
     link: "https://github.com/MohakGangwani/RAGSwitch"
-    image: "img/ragswitch project.png"
+    image: "img/ragswitch-project.webp"
     tags: ["RAG", "LangChain", "Streamlit", "OpenAI", "Ollama", "Vector Stores", "LLM", "Chatbot"]
   - title: "Image Captioning Project"
     description: "The Image Captioning Project combines InceptionV3 for image feature extraction and an LSTM-based decoder to generate descriptive captions for images. It preprocesses images and text, uses InceptionV3 to extract features, and trains the LSTM to predict captions from these features. The project demonstrates expertise in deep learning, and sequence modeling, showcasing skills in TensorFlow/Keras and working with image and text data."
     link: "https://github.com/MohakGangwani/Image-Captioning"
-    image: "img/image captioning project.png"
+    image: "img/image-captioning-project.webp"
     tags: ["Deep Learning", "TensorFlow", "InceptionV3", "LSTM", "Computer Vision", "NLP", "Image Processing"]
   - title: "Marketing Analytics Dashboard"
     description: "The Marketing Analytics Dashboard offers an intuitive interface for visualising key marketing metrics, such as customer sentiment, product conversion rates, and social media engagement trends. Key features include real-time data updates, interactive filtering options, and drill-down capabilities for in-depth analysis. It also provides clear visualizations of performance across multiple channels, enabling businesses to identify trends and make data-driven decisions to optimise marketing efforts."
     link: "https://github.com/MohakGangwani/Marketing-Analytics-Dashboard"
-    image: "img/marketing analytics dashboard.png"
+    image: "img/marketing-analytics-dashboard.webp"
     tags: ["Data Visualization", "Dashboard", "Analytics", "Business Intelligence", "Real-time Data", "Marketing Metrics"]
 contact:
   phone: "(+44) 7741873577"
@@ -154,5 +154,5 @@ contact:
   linkedin-link: "https://www.linkedin.com/in/mohak-gangwani/"
 
 email:
-  id: "mohakgangwani.website@gmail.com"
-  password: "kmxzintbegeadgou"
+  id: "${EMAIL_ID}"
+  password: "${EMAIL_PASSWORD}"

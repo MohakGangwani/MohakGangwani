@@ -1,373 +1,690 @@
-/**
-* Template Name: DevFolio
-* Template URL: https://bootstrapmade.com/devfolio-bootstrap-portfolio-html-template/
-* Updated: Aug 07 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+// Enhanced Main JavaScript for Mohak Gangwani Website
+// Features: Lazy loading, progressive images, performance optimization, accessibility
 
-(function() {
-  "use strict";
+class WebsiteEnhancer {
+    constructor() {
+        this.init();
+    }
 
-  // Initialize AOS
-  AOS.init({
-      duration: 800,
-      easing: 'ease-in-out',
-      once: true,
-      offset: 100,
-      delay: 0
-  });
+    init() {
+        this.setupLazyLoading();
+        this.setupProgressiveImages();
+        this.setupScrollToTop();
+        this.setupTypedText();
+        this.setupSmoothScrolling();
+        this.setupPerformanceOptimizations();
+        this.setupAccessibility();
+        this.setupFormEnhancements();
+        this.setupAnimations();
+    }
 
-  // Lazy loading for images
-  function lazyLoadImages() {
-      const images = document.querySelectorAll('img[data-src]');
+    // Lazy Loading Implementation
+    setupLazyLoading() {
+        if ('IntersectionObserver' in window) {
       const imageObserver = new IntersectionObserver((entries, observer) => {
           entries.forEach(entry => {
               if (entry.isIntersecting) {
                   const img = entry.target;
-                  img.src = img.dataset.src;
-                  img.classList.add('loaded');
+                        this.loadImage(img);
                   observer.unobserve(img);
               }
           });
       });
 
-      images.forEach(img => imageObserver.observe(img));
-  }
+            // Observe all images with data-src attribute
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        } else {
+            // Fallback for older browsers
+            this.loadAllImages();
+        }
+    }
 
-  // Initialize lazy loading
-  document.addEventListener('DOMContentLoaded', lazyLoadImages);
+    loadImage(img) {
+        const src = img.dataset.src;
+        if (!src) return;
 
-  // Scroll to top functionality
-  const scrollTop = document.getElementById('scrollTop');
-  window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 300) {
-          scrollTop.classList.add('show');
+        // Create a new image to preload
+        const tempImage = new Image();
+        
+        tempImage.onload = () => {
+            img.src = src;
+            img.classList.remove('lazy-image');
+            img.classList.add('loaded');
+            img.removeAttribute('data-src');
+            
+            // Trigger custom event for other components
+            img.dispatchEvent(new CustomEvent('imageLoaded'));
+        };
+
+        tempImage.onerror = () => {
+            img.classList.add('image-error');
+            img.alt = 'Image failed to load';
+        };
+
+        tempImage.src = src;
+    }
+
+    loadAllImages() {
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            this.loadImage(img);
+        });
+    }
+
+    // Progressive Image Loading
+    setupProgressiveImages() {
+        document.querySelectorAll('.progressive-image').forEach(container => {
+            const img = container.querySelector('img');
+            if (!img) return;
+
+            container.classList.add('loading');
+
+            img.onload = () => {
+                container.classList.remove('loading');
+                container.classList.add('loaded');
+            };
+
+            img.onerror = () => {
+                container.classList.remove('loading');
+                container.classList.add('error');
+            };
+        });
+    }
+
+    // Enhanced Scroll to Top
+    setupScrollToTop() {
+        const scrollTopBtn = document.getElementById('scrollTop');
+        if (!scrollTopBtn) return;
+
+        let isScrolling = false;
+
+        const showScrollButton = () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
       } else {
-          scrollTop.classList.remove('show');
-      }
-  });
+                scrollTopBtn.classList.remove('visible');
+            }
+        };
 
-  scrollTop.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+        const smoothScrollToTop = (e) => {
+            e.preventDefault();
+            if (isScrolling) return;
 
-  // Navbar background on scroll
-  window.addEventListener('scroll', () => {
-      const navbar = document.querySelector('.navbar');
-      if (window.scrollY > 50) {
-          navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-          navbar.style.boxShadow = '0 1px 3px 0 rgba(0, 0, 0, 0.1)';
+            isScrolling = true;
+            const startPosition = window.pageYOffset;
+            const targetPosition = 0;
+            const distance = targetPosition - startPosition;
+            const duration = 1000;
+            let start = null;
+
+            const animation = (currentTime) => {
+                if (start === null) start = currentTime;
+                const timeElapsed = currentTime - start;
+                const run = this.easeInOutCubic(timeElapsed, startPosition, distance, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) {
+                    requestAnimationFrame(animation);
       } else {
-          navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-          navbar.style.boxShadow = 'none';
-      }
-  });
+                    isScrolling = false;
+                }
+            };
 
-  // Performance optimization: Debounce scroll events
-  function debounce(func, wait) {
-      let timeout;
-      return function executedFunction(...args) {
-          const later = () => {
-              clearTimeout(timeout);
-              func(...args);
-          };
-          clearTimeout(timeout);
-          timeout = setTimeout(later, wait);
-      };
-  }
+            requestAnimationFrame(animation);
+        };
 
-  // Apply debouncing to scroll events
-  const debouncedScrollHandler = debounce(() => {
-      // Navbar scroll effect
-      const navbar = document.querySelector('.navbar');
-      if (window.scrollY > 50) {
-          navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-          navbar.style.boxShadow = '0 1px 3px 0 rgba(0, 0, 0, 0.1)';
-      } else {
-          navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-          navbar.style.boxShadow = 'none';
-      }
+        // Throttled scroll event
+        let ticking = false;
+        const updateScrollButton = () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    showScrollButton();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
 
-      // Scroll to top button
-      if (window.pageYOffset > 300) {
-          scrollTop.classList.add('show');
-      } else {
-          scrollTop.classList.remove('show');
-      }
-  }, 10);
+        window.addEventListener('scroll', updateScrollButton, { passive: true });
+        scrollTopBtn.addEventListener('click', smoothScrollToTop);
+    }
 
-  window.addEventListener('scroll', debouncedScrollHandler);
+    // Easing function for smooth scrolling
+    easeInOutCubic(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t * t + b;
+        t -= 2;
+        return c / 2 * (t * t * t + 2) + b;
+    }
 
-  // Preload critical images
-  function preloadCriticalImages() {
-      // Get the profile image URL from a data attribute
-      const profileImg = document.querySelector('img[src*="about-me"]');
-      if (profileImg && profileImg.src) {
-          const link = document.createElement('link');
-          link.rel = 'preload';
-          link.as = 'image';
-          link.href = profileImg.src;
-          document.head.appendChild(link);
-      }
-  }
-
-  // Initialize preloading
-  document.addEventListener('DOMContentLoaded', preloadCriticalImages);
-
-  // Register service worker
-  if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/static/js/sw.js')
-              .then(registration => {
-                  console.log('SW registered: ', registration);
-              })
-              .catch(registrationError => {
-                  console.log('SW registration failed: ', registrationError);
-              });
-      });
-  }
-
-  // Typed.js initialization for home page
-  document.addEventListener('DOMContentLoaded', function() {
+    // Typed Text Animation
+    setupTypedText() {
+        if (typeof Typed !== 'undefined' && window.typedStrings) {
       const typedElement = document.getElementById('typed-text');
       if (typedElement) {
-          new Typed('#typed-text', {
-              strings: window.typedStrings || ['Data Scientist', 'Machine Learning Engineer', 'Analytics Consultant'],
+                new Typed(typedElement, {
+                    strings: window.typedStrings,
               typeSpeed: 50,
               backSpeed: 30,
               backDelay: 2000,
               loop: true,
               showCursor: true,
-              cursorChar: '|'
-          });
-      }
-      
-      // Animated counters
-      const counters = document.querySelectorAll('.counter');
-      const animateCounters = () => {
-          counters.forEach(counter => {
-              const target = parseInt(counter.getAttribute('data-target'));
-              const count = parseInt(counter.innerText);
-              const increment = target / 100;
-              
-              if (count < target) {
-                  counter.innerText = Math.ceil(count + increment);
-                  setTimeout(animateCounters, 20);
-              } else {
-                  counter.innerText = target + '+';
-              }
-          });
-      };
-      
-      // Skill progress bars
-      const skillCards = document.querySelectorAll('.skill-card');
-      const animateProgressBars = () => {
-          skillCards.forEach(card => {
-              const progressBar = card.querySelector('.progress-bar');
-              const targetWidth = progressBar.getAttribute('data-width');
-              
-              setTimeout(() => {
-                  progressBar.style.width = targetWidth + '%';
-              }, 500);
-          });
-      };
-      
-      // Intersection Observer for animations
-      const observerOptions = {
-          threshold: 0.5,
-          rootMargin: '0px 0px -100px 0px'
-      };
-      
-      const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                  if (entry.target.classList.contains('stat-card')) {
-                      animateCounters();
-                  } else if (entry.target.classList.contains('skill-card')) {
-                      animateProgressBars();
-                  }
-              }
-          });
-      }, observerOptions);
-      
-      // Observe elements
-      document.querySelectorAll('.stat-card').forEach(card => observer.observe(card));
-      document.querySelectorAll('.skill-card').forEach(card => observer.observe(card));
-      
-      // Interactive skill badges
-      const skillBadges = document.querySelectorAll('.skill-badge');
-      skillBadges.forEach(badge => {
-          badge.addEventListener('mouseenter', function() {
-              this.style.transform = 'scale(1.1)';
-              this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
-          });
-          
-          badge.addEventListener('mouseleave', function() {
-              this.style.transform = 'scale(1)';
-              this.style.boxShadow = 'none';
-          });
-      });
-      
-      // Scroll indicator functionality
-      const scrollIndicator = document.querySelector('.scroll-indicator');
-      if (scrollIndicator) {
-          scrollIndicator.addEventListener('click', function() {
-              const nextSection = document.querySelector('.section');
-              if (nextSection) {
-                  nextSection.scrollIntoView({ 
-                      behavior: 'smooth',
-                      block: 'start'
-                  });
-              }
-          });
-      }
-  });
+                    cursorChar: '|',
+                    autoInsertCss: true
+                });
+            }
+        }
+    }
 
-  // Contact form handling
-  document.addEventListener('DOMContentLoaded', function() {
-      const form = document.getElementById('contactForm');
-      if (form) {
-          const submitBtn = document.getElementById('submitBtn');
-          const btnText = submitBtn.querySelector('.btn-text');
-          const btnLoading = submitBtn.querySelector('.btn-loading');
-          const messageInput = document.getElementById('message');
-          const charCountSpan = document.getElementById('charCount');
+    // Smooth Scrolling for Anchor Links
+    setupSmoothScrolling() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(anchor.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    }
 
-          // Update character count
-          if (messageInput && charCountSpan) {
-              messageInput.addEventListener('input', function() {
-                  const currentLength = this.value.length;
-                  charCountSpan.textContent = currentLength;
-                  
-                  // Change color based on length
-                  if (currentLength < 10) {
-                      charCountSpan.style.color = '#dc3545';
-                  } else if (currentLength > 1800) {
-                      charCountSpan.style.color = '#ffc107';
-                  } else {
-                      charCountSpan.style.color = '#198754';
-                  }
-              });
-          }
+    // Performance Optimizations
+    setupPerformanceOptimizations() {
+        // Preload critical resources
+        this.preloadCriticalResources();
+        
+        // Defer non-critical JavaScript
+        this.deferNonCriticalScripts();
+        
+        // Optimize images on viewport change
+        this.optimizeImagesOnResize();
+    }
 
-          // Real-time validation
-          const inputs = form.querySelectorAll('input, textarea');
+    preloadCriticalResources() {
+        const criticalResources = [
+            '/static/css/main.css',
+            '/static/js/main.js'
+        ];
+
+        criticalResources.forEach(resource => {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.href = resource;
+            link.as = resource.endsWith('.css') ? 'style' : 'script';
+            document.head.appendChild(link);
+        });
+    }
+
+    deferNonCriticalScripts() {
+        // Defer loading of non-critical scripts
+        const deferredScripts = [
+            'https://unpkg.com/aos@2.3.1/dist/aos.js'
+        ];
+
+        deferredScripts.forEach(src => {
+            const script = document.createElement('script');
+            script.src = src;
+            script.defer = true;
+            document.body.appendChild(script);
+        });
+    }
+
+    optimizeImagesOnResize() {
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                this.updateImageSizes();
+            }, 250);
+        });
+    }
+
+    updateImageSizes() {
+        // Update image sizes based on viewport
+        const images = document.querySelectorAll('img[data-srcset]');
+        images.forEach(img => {
+            const srcset = img.dataset.srcset;
+            if (srcset) {
+                img.srcset = srcset;
+            }
+        });
+    }
+
+    // Accessibility Enhancements
+    setupAccessibility() {
+        // Skip to main content link
+        this.addSkipToContentLink();
+        
+        // Enhanced keyboard navigation
+        this.enhanceKeyboardNavigation();
+        
+        // Focus management
+        this.setupFocusManagement();
+        
+        // ARIA live regions
+        this.setupAriaLiveRegions();
+    }
+
+    addSkipToContentLink() {
+        const skipLink = document.createElement('a');
+        skipLink.href = '#main-content';
+        skipLink.textContent = 'Skip to main content';
+        skipLink.className = 'skip-link sr-only sr-only-focusable';
+        skipLink.style.cssText = `
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            z-index: 1001;
+            color: white;
+            background: #000;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+        `;
+        
+        skipLink.addEventListener('focus', () => {
+            skipLink.style.top = '6px';
+        });
+        
+        skipLink.addEventListener('blur', () => {
+            skipLink.style.top = '-40px';
+        });
+
+        document.body.insertBefore(skipLink, document.body.firstChild);
+    }
+
+    enhanceKeyboardNavigation() {
+        // Enhanced tab navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+
+        document.addEventListener('mousedown', () => {
+            document.body.classList.remove('keyboard-navigation');
+        });
+    }
+
+    setupFocusManagement() {
+        // Focus trap for modals
+        this.setupFocusTrap();
+        
+        // Focus restoration
+        this.setupFocusRestoration();
+    }
+
+    setupFocusTrap() {
+        // Implementation for focus trapping in modals
+        // This would be used if modals are added later
+    }
+
+    setupFocusRestoration() {
+        let lastFocusedElement;
+        
+        document.addEventListener('focusin', (e) => {
+            lastFocusedElement = e.target;
+        });
+        
+        // Restore focus when needed
+        this.restoreFocus = () => {
+            if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+                lastFocusedElement.focus();
+            }
+        };
+    }
+
+    setupAriaLiveRegions() {
+        // Create ARIA live regions for dynamic content
+        const liveRegion = document.createElement('div');
+        liveRegion.setAttribute('aria-live', 'polite');
+        liveRegion.setAttribute('aria-atomic', 'true');
+        liveRegion.className = 'sr-only';
+        document.body.appendChild(liveRegion);
+        
+        this.announceToScreenReader = (message) => {
+            liveRegion.textContent = message;
+        };
+    }
+
+    // Form Enhancements
+    setupFormEnhancements() {
+        // Enhanced form validation
+        this.setupFormValidation();
+        
+        // Auto-save form data
+        this.setupFormAutoSave();
+        
+        // Enhanced form accessibility
+        this.setupFormAccessibility();
+    }
+
+    setupFormValidation() {
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            const inputs = form.querySelectorAll('input, textarea, select');
+            
           inputs.forEach(input => {
-              input.addEventListener('blur', function() {
-                  validateField(this);
-              });
-              
-              input.addEventListener('input', function() {
-                  if (this.classList.contains('is-invalid')) {
-                      validateField(this);
+                input.addEventListener('blur', () => {
+                    this.validateField(input);
+                });
+                
+                input.addEventListener('input', () => {
+                    this.clearFieldError(input);
+                });
+            });
+            
+            form.addEventListener('submit', (e) => {
+                if (!this.validateForm(form)) {
+                    e.preventDefault();
                   }
               });
           });
+    }
 
-          function validateField(field) {
+    validateField(field) {
               const value = field.value.trim();
-              const isValid = field.checkValidity();
-              
-              if (isValid && value.length > 0) {
-                  field.classList.remove('is-invalid');
-                  field.classList.add('is-valid');
-              } else {
-                  field.classList.remove('is-valid');
-                  field.classList.add('is-invalid');
-              }
-          }
+        let isValid = true;
+        let errorMessage = '';
 
-          form.addEventListener('submit', function(e) {
-              // Prevent submission if form is invalid
-              if (!form.checkValidity()) {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  
-                  // Show validation messages
-                  form.classList.add('was-validated');
-                  
-                  // Focus on first invalid field
-                  const firstInvalid = form.querySelector('.is-invalid');
-                  if (firstInvalid) {
-                      firstInvalid.focus();
-                  }
-                  return;
-              }
-              
-              // Show loading state
-              btnText.classList.add('d-none');
-              btnLoading.classList.remove('d-none');
-              submitBtn.disabled = true;
-          });
+        // Required field validation
+        if (field.hasAttribute('required') && !value) {
+            isValid = false;
+            errorMessage = 'This field is required';
+        }
 
-          // Bootstrap form validation
-          const forms = document.querySelectorAll('.needs-validation');
-          Array.from(forms).forEach(form => {
-              form.addEventListener('submit', event => {
-                  if (!form.checkValidity()) {
-                      event.preventDefault();
-                      event.stopPropagation();
-                  }
-                  form.classList.add('was-validated');
-              }, false);
-          });
+        // Email validation
+        if (field.type === 'email' && value) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(value)) {
+                isValid = false;
+                errorMessage = 'Please enter a valid email address';
+            }
+        }
 
-          // Add floating labels effect
-          const floatingLabels = document.querySelectorAll('.form-control');
-          floatingLabels.forEach(input => {
-              input.addEventListener('focus', function() {
-                  this.parentElement.classList.add('focused');
-              });
-              
-              input.addEventListener('blur', function() {
-                  if (this.value.length === 0) {
-                      this.parentElement.classList.remove('focused');
+        // Length validation
+        if (field.hasAttribute('minlength')) {
+            const minLength = parseInt(field.getAttribute('minlength'));
+            if (value.length < minLength) {
+                isValid = false;
+                errorMessage = `Minimum ${minLength} characters required`;
+            }
+        }
+
+        if (!isValid) {
+            this.showFieldError(field, errorMessage);
+        }
+
+        return isValid;
+    }
+
+    showFieldError(field, message) {
+        this.clearFieldError(field);
+        
+        field.classList.add('is-invalid');
+        
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'invalid-feedback';
+        errorDiv.textContent = message;
+        errorDiv.setAttribute('role', 'alert');
+        
+        field.parentNode.appendChild(errorDiv);
+        
+        // Announce error to screen reader
+        this.announceToScreenReader(message);
+    }
+
+    clearFieldError(field) {
+        field.classList.remove('is-invalid');
+        const errorDiv = field.parentNode.querySelector('.invalid-feedback');
+        if (errorDiv) {
+            errorDiv.remove();
+        }
+    }
+
+    validateForm(form) {
+        const inputs = form.querySelectorAll('input, textarea, select');
+        let isValid = true;
+        
+        inputs.forEach(input => {
+            if (!this.validateField(input)) {
+                isValid = false;
+            }
+        });
+        
+        return isValid;
+    }
+
+    setupFormAutoSave() {
+        const forms = document.querySelectorAll('form[data-autosave]');
+        forms.forEach(form => {
+            const formId = form.dataset.autosave || 'default';
+            const inputs = form.querySelectorAll('input, textarea, select');
+            
+            inputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    this.saveFormData(formId, form);
+                });
+            });
+            
+            // Restore form data on page load
+            this.restoreFormData(formId, form);
+        });
+    }
+
+    saveFormData(formId, form) {
+        const formData = new FormData(form);
+        const data = {};
+        
+        for (let [key, value] of formData.entries()) {
+            data[key] = value;
+        }
+        
+        localStorage.setItem(`form_${formId}`, JSON.stringify(data));
+    }
+
+    restoreFormData(formId, form) {
+        const savedData = localStorage.getItem(`form_${formId}`);
+        if (savedData) {
+            try {
+                const data = JSON.parse(savedData);
+                Object.keys(data).forEach(key => {
+                    const field = form.querySelector(`[name="${key}"]`);
+                    if (field && !field.value) {
+                        field.value = data[key];
+                    }
+                });
+            } catch (e) {
+                console.warn('Failed to restore form data:', e);
+            }
+        }
+    }
+
+    setupFormAccessibility() {
+        // Enhanced form labels and descriptions
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            const inputs = form.querySelectorAll('input, textarea, select');
+            
+            inputs.forEach(input => {
+                if (!input.id) {
+                    input.id = `input_${Math.random().toString(36).substr(2, 9)}`;
+                }
+                
+                const label = input.parentNode.querySelector('label');
+                if (label && !label.getAttribute('for')) {
+                    label.setAttribute('for', input.id);
                   }
               });
           });
       }
-  });
 
-  // Project details modal functionality
-  document.addEventListener('DOMContentLoaded', function() {
-      const projectDetailsBtns = document.querySelectorAll('.project-details-btn');
-      const projectModal = document.getElementById('projectModal');
-      
-      if (projectModal && projectDetailsBtns.length > 0) {
-          const projectModalInstance = new bootstrap.Modal(projectModal);
-          const projectDetails = document.getElementById('projectDetails');
-          const projectLink = document.getElementById('projectLink');
-          
-          projectDetailsBtns.forEach(btn => {
-              btn.addEventListener('click', function() {
-                  const title = this.getAttribute('data-project');
-                  const description = this.getAttribute('data-description');
-                  const tags = this.getAttribute('data-tags').split(', ');
-                  
-                  // Find the project link
-                  const projectCard = this.closest('.project-card');
-                  const linkElement = projectCard.querySelector('a[href*="github"]');
-                  const link = linkElement ? linkElement.href : '#';
-                  
-                  // Populate modal
-                  projectDetails.innerHTML = `
-                      <h4 class="mb-3">${title}</h4>
-                      <p class="mb-4">${description}</p>
-                      <div class="mb-3">
-                          <h6>Technologies Used:</h6>
-                          <div class="tags-container">
-                              ${tags.map(tag => `<span class="badge bg-primary me-1 mb-1">${tag}</span>`).join('')}
-                          </div>
-                      </div>
-                  `;
-                  
-                  projectLink.href = link;
-                  projectModalInstance.show();
+    // Animation Enhancements
+    setupAnimations() {
+        // Intersection Observer for animations
+        this.setupIntersectionAnimations();
+        
+        // Parallax effects
+        this.setupParallaxEffects();
+        
+        // Smooth reveal animations
+        this.setupRevealAnimations();
+    }
+
+    setupIntersectionAnimations() {
+        if ('IntersectionObserver' in window) {
+            const animationObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('[data-animate]').forEach(element => {
+                animationObserver.observe(element);
+            });
+        }
+    }
+
+    setupParallaxEffects() {
+        // Simple parallax effect for hero section
+        const heroSection = document.querySelector('.hero-section');
+        if (heroSection) {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+                heroSection.style.transform = `translateY(${rate}px)`;
+            }, { passive: true });
+        }
+    }
+
+    setupRevealAnimations() {
+        // Counter animations for stats
+        this.setupCounterAnimations();
+        
+        // Progress bar animations
+        this.setupProgressAnimations();
+    }
+
+    setupCounterAnimations() {
+        const counters = document.querySelectorAll('.counter');
+        if (counters.length === 0) return;
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = parseInt(counter.dataset.target);
+                    this.animateCounter(counter, target);
+                    counterObserver.unobserve(counter);
+                }
               });
           });
-      }
-  });
 
-})();
+        counters.forEach(counter => {
+            counterObserver.observe(counter);
+        });
+    }
+
+    animateCounter(counter, target) {
+        let current = 0;
+        const increment = target / 100;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            counter.textContent = Math.floor(current);
+        }, 20);
+    }
+
+    setupProgressAnimations() {
+        const progressBars = document.querySelectorAll('.progress-bar');
+        if (progressBars.length === 0) return;
+
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBar = entry.target;
+                    const width = progressBar.dataset.width || '100%';
+                    progressBar.style.width = width;
+                    progressObserver.unobserve(progressBar);
+                }
+            });
+        });
+
+        progressBars.forEach(progressBar => {
+            progressObserver.observe(progressBar);
+        });
+    }
+
+    // Utility Methods
+    debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
+    }
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    new WebsiteEnhancer();
+});
+
+// Performance monitoring
+if ('performance' in window) {
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const perfData = performance.getEntriesByType('navigation')[0];
+            if (perfData) {
+                console.log('Page Load Performance:', {
+                    'DOM Content Loaded': perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart,
+                    'Load Complete': perfData.loadEventEnd - perfData.loadEventStart,
+                    'Total Time': perfData.loadEventEnd - perfData.fetchStart
+                });
+            }
+        }, 0);
+    });
+}
+
+// Service Worker Registration (for future PWA features)
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+                console.log('SW registered: ', registration);
+            })
+            .catch(registrationError => {
+                console.log('SW registration failed: ', registrationError);
+            });
+    });
+}

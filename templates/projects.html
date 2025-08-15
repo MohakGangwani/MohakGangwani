@@ -21,18 +21,12 @@
                     <div class="project-image position-relative overflow-hidden">
                         <img src="{{ url_for('static', filename=project['image']) }}" 
                              class="card-img-top" 
-                             alt="{{ project['title'] }}">
+                                     alt="{{ project['title'] }}">
                         <div class="project-overlay">
                             <div class="overlay-content">
                                 <a href="{{ project['link'] }}" class="btn btn-light btn-sm overlay-btn" target="_blank">
                                     <i class="bi bi-github me-1"></i>View Code
                                 </a>
-                                <button class="btn btn-outline-light btn-sm overlay-btn project-details-btn" 
-                                        data-project="{{ project['title'] }}" 
-                                        data-description="{{ project['description'] }}"
-                                        data-tags="{{ project.tags | join(', ') }}">
-                                    <i class="bi bi-info-circle me-1"></i>Details
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -95,7 +89,7 @@
                                 <i class="bi bi-graph-up"></i>
                             {% elif skill_category['category'] == 'Databases' %}
                                 <i class="bi bi-database"></i>
-                            {% elif skill_category['category'] == 'Deployment & CLoud Tools' %}
+                            {% elif skill_category['category'] == 'Deployment & Cloud Tools' %}
                                 <i class="bi bi-cloud"></i>
                             {% elif skill_category['category'] == 'Data Visualization & Dashboarding' %}
                                 <i class="bi bi-bar-chart"></i>

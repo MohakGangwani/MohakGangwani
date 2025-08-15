@@ -1,5 +1,9 @@
 import os
 from typing import Optional
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 class Config:
     """Configuration class for the application."""
@@ -23,6 +27,18 @@ class Config:
     # Content File
     CONTENT_FILE: str = 'params.yaml'
     
+    # Redis Configuration
+    REDIS_URL: str = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
+    REDIS_ENABLED: bool = os.environ.get('REDIS_ENABLED', 'False').lower() == 'true'
+    
+    # CDN Configuration
+    CDN_URL: Optional[str] = os.environ.get('CDN_URL')
+    
+    # Cache Configuration
+    CACHE_TYPE: str = "redis" if REDIS_ENABLED else "simple"
+    CACHE_DEFAULT_TIMEOUT: int = 300  # 5 minutes
+    CACHE_KEY_PREFIX: str = "mohak_website_"
+    
     @classmethod
     def validate_email_config(cls) -> bool:
         """Validate that email configuration is complete."""
@@ -39,4 +55,12 @@ class Config:
             'MAIL_USERNAME': cls.MAIL_USERNAME,
             'MAIL_PASSWORD': cls.MAIL_PASSWORD,
             'MAIL_DEFAULT_SENDER': cls.MAIL_DEFAULT_SENDER,
+        }
+    
+    @classmethod
+    def get_redis_config(cls) -> dict:
+        """Get Redis configuration as dictionary."""
+        return {
+            'REDIS_URL': cls.REDIS_URL,
+            'REDIS_ENABLED': cls.REDIS_ENABLED,
         } 

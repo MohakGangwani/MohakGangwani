@@ -35,9 +35,12 @@
             <div class="col-lg-6" data-aos="fade-left">
                 <div class="hero-image text-center">
                     <div class="profile-card glass-card">
-                        <img src="{{ url_for('static', filename=content['resume']['About']['img']) }}" 
-                             alt="Mohak Gangwani" 
-                             class="img-fluid rounded-circle mb-3 profile-image">
+                        {% if content['resume']['About']['img'] %}
+                            <img src="{{ url_for('static', filename=content['resume']['About']['img']) }}" 
+                                 alt="Mohak Gangwani" 
+                                 class="img-fluid rounded-circle mb-3 profile-image"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.marginTop='0';">
+                        {% endif %}
                         <h4 class="text-white mb-2">{{ content['resume']['About']['name'] }}</h4>
                         <p class="text-white-50 mb-0">{{ content['resume']['About']['profile'] }}</p>
                     </div>
@@ -155,12 +158,12 @@
                     <div class="project-image position-relative overflow-hidden">
                         <img src="{{ url_for('static', filename=project['image']) }}" 
                              class="card-img-top" 
-                             alt="{{ project['title'] }}">
+                                     alt="{{ project['title'] }}">
                         <div class="project-overlay">
-                            <a href="{{ project['link'] }}" class="btn btn-light btn-sm" target="_blank">
-                                <i class="bi bi-github me-1"></i>View Code
-                            </a>
-                        </div>
+                                                            <a href="{{ project['link'] }}" class="btn btn-light btn-sm" target="_blank">
+                                    <i class="bi bi-github me-1"></i>View Code
+                                </a>
+                                                        </div>
                     </div>
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title text-primary mb-3">{{ project['title'] }}</h5>

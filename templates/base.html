@@ -3,27 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Mohak Gangwani - Data Scientist{% endblock %}</title>
+    <title>{% block title %}Mohak Gangwani - Data Scientist & Machine Learning Engineer{% endblock %}</title>
     
     <!-- Meta Tags -->
-    <meta name="description" content="Mohak Gangwani - Data Scientist, Machine Learning Engineer, and Analytics Consultant with expertise in Python, ML, NLP, and data visualization.">
-    <meta name="keywords" content="Data Scientist, Machine Learning, Python, Analytics, NLP, Data Visualization, Portfolio">
+    <meta name="description" content="{% block meta_description %}Mohak Gangwani - Experienced Data Scientist, Machine Learning Engineer, and Analytics Consultant. Expert in Python, ML, NLP, forecasting, and data visualization. Transform your data into actionable insights.{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}Data Scientist, Machine Learning Engineer, Analytics Consultant, Python Developer, NLP Expert, Forecasting Specialist, Data Visualization, Business Intelligence, UK Data Science{% endblock %}">
     <meta name="author" content="Mohak Gangwani">
     <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mohakgangwani.com/">
-    <meta property="og:title" content="Mohak Gangwani - Data Scientist">
-    <meta property="og:description" content="Data Scientist, Machine Learning Engineer, and Analytics Consultant with expertise in Python, ML, NLP, and data visualization.">
+    <meta property="og:title" content="{% block og_title %}Mohak Gangwani - Data Scientist & Machine Learning Engineer{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Expert Data Scientist with 3+ years experience in ML, NLP, forecasting, and data visualization. Transform your business with data-driven insights.{% endblock %}">
     <meta property="og:image" content="{{ url_for('static', filename='img/about-me.jpg', _external=True) }}">
+    <meta property="og:site_name" content="Mohak Gangwani Portfolio">
+    <meta property="og:locale" content="en_GB">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://mohakgangwani.com/">
-    <meta property="twitter:title" content="Mohak Gangwani - Data Scientist">
-    <meta property="twitter:description" content="Data Scientist, Machine Learning Engineer, and Analytics Consultant with expertise in Python, ML, NLP, and data visualization.">
+    <meta property="twitter:title" content="{% block twitter_title %}Mohak Gangwani - Data Scientist & ML Engineer{% endblock %}">
+    <meta property="twitter:description" content="{% block twitter_description %}Expert Data Scientist specializing in Machine Learning, NLP, and Data Analytics. UK-based consultant helping businesses leverage data for growth.{% endblock %}">
     <meta property="twitter:image" content="{{ url_for('static', filename='img/about-me.jpg', _external=True) }}">
+    <meta property="twitter:creator" content="@mohakgangwani">
     
     <!-- Canonical URL -->
     <link rel="canonical" href="{{ request.url }}">
@@ -33,6 +38,10 @@
     <link rel="preconnect" href="https://unpkg.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    
+    <!-- DNS Prefetch for performance -->
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="//unpkg.com">
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -56,7 +65,7 @@
         "@type": "Person",
         "name": "Mohak Gangwani",
         "jobTitle": "Data Scientist",
-        "description": "Data Scientist, Machine Learning Engineer, and Analytics Consultant with expertise in Python, ML, NLP, and data visualization.",
+        "description": "Experienced Data Scientist and Machine Learning Engineer with expertise in Python, ML, NLP, forecasting, and data visualization.",
         "url": "https://mohakgangwani.com",
         "image": "{{ url_for('static', filename='img/about-me.jpg', _external=True) }}",
         "email": "mohakmg99@gmail.com",
@@ -68,61 +77,87 @@
         },
         "alumniOf": {
             "@type": "EducationalOrganization",
-            "name": "University of Nottingham"
+            "name": "University of Nottingham",
+            "description": "M.S. in Data Science"
         },
         "knowsAbout": [
             "Data Science",
             "Machine Learning",
-            "Python",
+            "Deep Learning",
             "Natural Language Processing",
+            "Time Series Forecasting",
             "Data Visualization",
-            "Statistical Analysis"
+            "Statistical Analysis",
+            "Python Programming",
+            "SQL and NoSQL Databases",
+            "AWS Cloud Services"
         ],
+        "hasOccupation": {
+            "@type": "Occupation",
+            "name": "Data Scientist",
+            "description": "Professional data scientist with 3+ years experience in machine learning and analytics"
+        },
         "sameAs": [
             "https://www.linkedin.com/in/mohak-gangwani/",
             "https://github.com/MohakGangwani/"
-        ]
+        ],
+        "worksFor": {
+            "@type": "Organization",
+            "name": "SourceFuse",
+            "jobTitle": "Data Scientist"
+        }
     }
     </script>
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="msapplication-TileColor" content="#3b82f6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Mohak Gangwani">
+    
+    <!-- Performance hints -->
+    <link rel="preload" href="{{ url_for('static', filename='css/main.css') }}" as="style">
+    <link rel="preload" href="{{ url_for('static', filename='js/main.js') }}" as="script">
 </head>
 
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('home') }}">
-                <i class="bi bi-code-slash"></i>Mohak Gangwani
+            <a class="navbar-brand" href="{{ url_for('home') }}" aria-label="Home - Mohak Gangwani">
+                <i class="bi bi-code-slash" aria-hidden="true"></i>Mohak Gangwani
             </a>
             
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link {{ 'active' if (navbar is defined and navbar['index'] == 'active') else '' }}" href="{{ url_for('home') }}">
-                            <i class="bi bi-house"></i>Home
+                        <a class="nav-link {{ 'active' if (navbar is defined and navbar['index'] == 'active') else '' }}" href="{{ url_for('home') }}" aria-label="Home page">
+                            <i class="bi bi-house" aria-hidden="true"></i>Home
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ 'active' if (navbar is defined and navbar['resume'] == 'active') else '' }}" href="{{ url_for('resume') }}">
-                            <i class="bi bi-file-earmark-text"></i>Resume
+                        <a class="nav-link {{ 'active' if (navbar is defined and navbar['resume'] == 'active') else '' }}" href="{{ url_for('resume') }}" aria-label="Resume and experience">
+                            <i class="bi bi-file-earmark-text" aria-hidden="true"></i>Resume
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ 'active' if (navbar is defined and navbar['services'] == 'active') else '' }}" href="{{ url_for('services') }}">
-                            <i class="bi bi-gear"></i>Services
+                        <a class="nav-link {{ 'active' if (navbar is defined and navbar['services'] == 'active') else '' }}" href="{{ url_for('services') }}" aria-label="Services offered">
+                            <i class="bi bi-gear" aria-hidden="true"></i>Services
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ 'active' if (navbar is defined and navbar['projects'] == 'active') else '' }}" href="{{ url_for('projects') }}">
-                            <i class="bi bi-folder"></i>Projects
+                        <a class="nav-link {{ 'active' if (navbar is defined and navbar['projects'] == 'active') else '' }}" href="{{ url_for('projects') }}" aria-label="Portfolio projects">
+                            <i class="bi bi-folder" aria-hidden="true"></i>Projects
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ 'active' if (navbar is defined and navbar['contact'] == 'active') else '' }}" href="{{ url_for('contact') }}">
-                            <i class="bi bi-envelope"></i>Contact
+                        <a class="nav-link {{ 'active' if (navbar is defined and navbar['contact'] == 'active') else '' }}" href="{{ url_for('contact') }}" aria-label="Contact information">
+                            <i class="bi bi-envelope" aria-hidden="true"></i>Contact
                         </a>
                     </li>
                 </ul>
@@ -137,10 +172,10 @@
         {% if messages %}
         <div class="container mt-3">
             {% for category, message in messages %}
-            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                <i class="bi bi-{{ 'check-circle' if category == 'success' else 'exclamation-triangle' }} me-2"></i>
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert" aria-live="polite">
+                <i class="bi bi-{{ 'check-circle' if category == 'success' else 'exclamation-triangle' }} me-2" aria-hidden="true"></i>
                 {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close alert"></button>
             </div>
             {% endfor %}
         </div>
@@ -151,8 +186,8 @@
     </main>
 
     <!-- Scroll to Top -->
-    <a href="#" class="scroll-top" id="scrollTop">
-        <i class="bi bi-arrow-up"></i>
+    <a href="#" class="scroll-top" id="scrollTop" aria-label="Scroll to top of page">
+        <i class="bi bi-arrow-up" aria-hidden="true"></i>
     </a>
 
     <!-- Scripts -->
@@ -169,5 +204,15 @@
         window.typedStrings = {{ content['index']['designations'].split(', ') | tojson }};
     </script>
     {% endif %}
+    
+    <!-- Initialize AOS -->
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+    </script>
 </body>
 </html>
