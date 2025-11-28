@@ -2,11 +2,12 @@
 {% block content %}
 
 <!-- Contact Hero -->
-<section class="section bg-light">
+<section class="section bg-light" style="padding: 6rem 0 4rem;">
     <div class="container">
         <div class="section-title text-center" data-aos="fade-up">
-            <h1>Get In Touch</h1>
-            <p class="lead">Let's discuss your next project or opportunity</p>
+            <span class="badge bg-primary mb-3" style="font-size: 0.875rem; padding: 0.5rem 1.25rem; border-radius: 50px; font-weight: 600;">💬 Contact</span>
+            <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1.5rem;">Get In Touch</h1>
+            <p class="lead" style="font-size: 1.25rem; max-width: 700px; margin: 0 auto; color: var(--text-secondary); font-weight: 500;">Let's discuss your next project or opportunity</p>
         </div>
     </div>
 </section>
@@ -19,8 +20,9 @@
             <div class="col-lg-5" data-aos="fade-right">
                 <div class="contact-info-card card h-100">
                     <div class="card-body">
-                        <h3 class="mb-4">Let's Connect</h3>
-                        <p class="mb-4">I'm always interested in new opportunities and exciting projects. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+                        <span class="badge bg-primary mb-3" style="font-size: 0.875rem; padding: 0.5rem 1.25rem; border-radius: 50px; font-weight: 600;">👋 Say Hello</span>
+                        <h3 class="mb-4" style="font-weight: 700; font-size: 2rem;">Let's Connect</h3>
+                        <p class="mb-4" style="font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary);">I'm always interested in new opportunities and exciting projects. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
                         
                         <div class="contact-details mb-4">
                             <div class="contact-item mb-3">
@@ -81,7 +83,8 @@
             <div class="col-lg-7" data-aos="fade-left">
                 <div class="contact-form-card card h-100">
                     <div class="card-body">
-                        <h3 class="mb-4">Send Me a Message</h3>
+                        <span class="badge bg-primary mb-3" style="font-size: 0.875rem; padding: 0.5rem 1.25rem; border-radius: 50px; font-weight: 600;">✉️ Message</span>
+                        <h3 class="mb-4" style="font-weight: 700; font-size: 2rem;">Send Me a Message</h3>
                         
                         <form action="{{ url_for('contact') }}" method="POST" class="needs-validation" novalidate id="contactForm">
                             <div class="row g-3">

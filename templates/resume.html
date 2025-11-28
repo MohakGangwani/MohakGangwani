@@ -2,7 +2,7 @@
 {% block content %}
 
 <!-- Resume Hero -->
-<section class="section bg-light resume-section">
+<section class="section bg-light resume-section" style="padding: 6rem 0;">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-4 text-center resume-section" data-aos="fade-right">
@@ -14,9 +14,10 @@
                 {% endif %}
             </div>
             <div class="col-lg-8" data-aos="fade-left">
-                <h1 class="display-4 fw-bold mb-3">{{ content['resume']['About']['name'] }}</h1>
-                <h3 class="text-primary mb-4">{{ content['resume']['About']['profile'] }}</h3>
-                <p class="lead mb-4">{{ content['resume']['Summary']['details'] }}</p>
+                <span class="badge bg-primary mb-3" style="font-size: 0.875rem; padding: 0.5rem 1.25rem; border-radius: 50px; font-weight: 600;">👨‍💻 About Me</span>
+                <h1 class="display-4 fw-bold mb-3" style="font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -0.02em;">{{ content['resume']['About']['name'] }}</h1>
+                <h3 class="mb-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; font-size: 1.75rem;">{{ content['resume']['About']['profile'] }}</h3>
+                <p class="lead mb-4" style="font-size: 1.125rem; line-height: 1.8; color: var(--text-secondary);">{{ content['resume']['Summary']['details'] }}</p>
                 
                 <div class="contact-info mb-4">
                     <div class="row">
@@ -60,40 +61,38 @@
 <!-- Work Experience -->
 <section class="section">
     <div class="container">
-        <div class="section-title" data-aos="fade-up">
-            <h2>Professional Experience</h2>
+        <div class="section-title text-center" data-aos="fade-up">
+            <span class="badge bg-primary mb-3" style="font-size: 0.875rem; padding: 0.5rem 1.25rem; border-radius: 50px; font-weight: 600;">💼 Experience</span>
+            <h2 style="margin-bottom: 1.25rem;">Professional Experience</h2>
+            <p style="font-size: 1.125rem; color: var(--text-secondary); max-width: 650px; margin: 0 auto;">My journey in data science and analytics</p>
         </div>
         
-        <div class="timeline-container">
+        <div class="row g-4 mt-2">
             {% for experience in content['resume']['Work Experience'] %}
-            <div class="timeline-item" data-aos="fade-up" data-aos-delay="{{ loop.index * 100 }}">
-                <div class="timeline-marker">
-                    <div class="marker-dot"></div>
-                    <div class="marker-line"></div>
-                </div>
-                <div class="timeline-content">
-                    <div class="experience-card card">
-                        <div class="card-body">
-                            <div class="row align-items-start">
-                                <div class="col-md-8">
-                                    <h4 class="card-title text-primary mb-1">{{ experience['position'] }}</h4>
-                                    <h6 class="text-muted mb-3">
-                                        <i class="bi bi-building me-1"></i>{{ experience['company'] }}
+            <div class="col-12" data-aos="fade-up" data-aos-delay="{{ loop.index * 100 }}">
+                <div class="experience-card card" style="border-left: 4px solid #6366f1;">
+                    <div class="card-body" style="padding: 2rem;">
+                        <div class="d-flex flex-wrap justify-content-between align-items-start mb-3">
+                            <div class="flex-grow-1">
+                                <h4 class="mb-2" style="font-weight: 700; font-size: 1.5rem; color: #0f172a;">{{ experience['position'] }}</h4>
+                                <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
+                                    <h6 class="mb-0" style="font-weight: 600; color: #6366f1; font-size: 1.125rem;">
+                                        <i class="bi bi-building me-2"></i>{{ experience['company'] }}
                                     </h6>
-                                    <ul class="list-unstyled experience-details">
-                                        {% for detail in experience['details'] %}
-                                        <li class="mb-2">
-                                            <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                            {{ detail }}
-                                        </li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                                <div class="col-md-4 text-md-end">
-                                    <span class="badge bg-primary fs-6 experience-badge">{{ experience['time_period'] }}</span>
+                                    <span class="badge" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.875rem; font-weight: 600;">
+                                        <i class="bi bi-calendar3 me-1"></i>{{ experience['time_period'] }}
+                                    </span>
                                 </div>
                             </div>
                         </div>
+                        <ul class="list-unstyled mb-0">
+                            {% for detail in experience['details'] %}
+                            <li class="mb-3 d-flex align-items-start" style="padding-left: 0.5rem; border-left: 2px solid transparent; transition: all 0.3s ease;">
+                                <i class="bi bi-check-circle-fill me-3 mt-1" style="color: #10b981; font-size: 1.125rem; flex-shrink: 0;"></i>
+                                <span style="color: #475569; line-height: 1.7; font-size: 1rem;">{{ detail }}</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -106,7 +105,8 @@
 <section class="section bg-light">
     <div class="container">
         <div class="section-title" data-aos="fade-up">
-            <h2>Education</h2>
+            <span class="badge bg-primary mb-3" style="font-size: 0.875rem; padding: 0.5rem 1.25rem; border-radius: 50px; font-weight: 600;">🎓 Education</span>
+            <h2 style="margin-bottom: 1.25rem;">Education</h2>
         </div>
         
         <div class="row g-4">
@@ -137,7 +137,8 @@
 <section class="section">
     <div class="container">
         <div class="section-title" data-aos="fade-up">
-            <h2>Skills & Technologies</h2>
+            <span class="badge bg-primary mb-3" style="font-size: 0.875rem; padding: 0.5rem 1.25rem; border-radius: 50px; font-weight: 600;">🚀 Skills</span>
+            <h2 style="margin-bottom: 1.25rem;">Skills & Technologies</h2>
         </div>
         
         <div class="row g-4">
